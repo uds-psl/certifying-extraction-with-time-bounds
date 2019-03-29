@@ -1,0 +1,25 @@
+- For internalisation: do not make logical arguments (Types and decider...) arguments of fix:
+e.g., write "fun (X : Type) (Eq_dec : eq_dec X) => fix pos (s : X) (A : list X) {struct A} : option nat :="
+instead of "fix pos (X : Type) (Eq_dec : eq_dec X) (s : X) (A : list X) {struct A} : option nat :="
+
+- The warnings in Lsimpl come from Find_at':
+
+Ltac Find_at' a l :=
+  match l with
+  | (cons ?s ?l) =>
+    match s with
+      (a) => constr:(0)
+    end
+  | (cons ?y ?l) =>
+    let n := Find_at' a l in
+    constr:(S n)
+  end.
+
+Goal False.
+  let x := Find_at' (fun (x y:nat) => x) [(fun (x x:nat) => x);(fun (x1 x2:nat) => x1)] in pose x.
+  let x := Find_at' (fun (x x:nat) => x) [(fun (x x:nat) => x);(fun (x1 x2:nat) => x1)] in pose x.
+  Abort.
+
+- Make sure that all instances declared inside a section are declared as `Global Instance`
+
+- When defining encodings for records, make sure that you do this via a match and not by using the projections

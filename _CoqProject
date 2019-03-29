@@ -1,0 +1,76 @@
+#-Q ./coq-library-undecidability/PCP "PCP"
+-Q ./coq-library-undecidability "Undecidability"
+-Q ./base-library "Shared"
+-Q "./template-coq/template-coq/theories/" Template
+-I "./template-coq/template-coq/src"
+
+-R . "L"
+
+-arg -w -arg -notation-overridden,-redundant-canonical-projection,-several-object-files,-cannot-define-projection,-records,-unused-intro-pattern,-tactics,-masking-absolute-name
+
+-install none
+COQDOCFLAGS = "--charset utf-8 -s --parse-comments --with-header ./docs/website/resources/header.html --with-footer ./docs/website/resources/footer.html --index indexpage"
+
+Prelim/MoreBase.v
+Prelim/ARS.v
+Prelim/StringBase.v
+Prelim/MoreList.v
+
+L.v
+
+Tactics/Computable.v
+Tactics/ComputableTime.v
+
+Tactics/LTactics.v
+
+Tactics/Extract.v
+Tactics/GenEncode.v
+
+Tactics/Lproc.v
+Tactics/Lbeta.v
+Tactics/Reflection.v
+Tactics/LClos.v
+Tactics/LClos_Eval.v
+Tactics/Lrewrite.v
+Tactics/Lsimpl.v
+
+Tactics/ComputableTactics.v
+Tactics/ComputableDemo.v
+
+Tactics/mixedTactics.v
+
+Datatypes/LUnit.v
+Datatypes/LBool.v
+Datatypes/Lists.v
+Datatypes/LNat.v
+Datatypes/LOptions.v
+Datatypes/LProd.v
+Datatypes/LBinNums.v
+Datatypes/LTerm.v
+
+Functions/Equality.v
+Functions/Encoding.v
+Functions/Proc.v
+Functions/Size.v
+Functions/Subst.v
+
+Functions/Unenc.v
+Functions/Ackermann.v
+
+Computability/Seval.v
+Functions/Eval.v
+
+TM/Prelim.v
+TM/TM.v
+TM/TMEncoding.v
+Reductions/TM.v
+
+Reductions/SRH_SR.v
+Reductions/SR_MPCP.v
+Reductions/MPCP_PCP.v
+Reductions/PCP_CFG.v
+Reductions/H10.v
+
+Computability/Computability.v
+Computability/MuRec.v
+Computability/Synthetic.v

@@ -1,0 +1,9 @@
+[submodule "metacoq"]
+	path = metacoq
+	url = git@github.com:MetaCoq/metacoq.git
+[submodule "template-coq"]
+	path = template-coq
+	url = git@github.com:MetaCoq/metacoq.git
+[submodule "coq-library-undecidability"]
+	path = coq-library-undecidability
+	url = git@github.com:uds-psl/coq-library-undecidability.git

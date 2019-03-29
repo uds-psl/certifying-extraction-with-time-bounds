@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="../">Project Page</a>
+      <a href="./indexpage.html"> Index </a>
+      <a href="./toc.html"> Table of Contents </a>
+    </span>
+</div>
+    <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="main">
+<div id="toc">
+<ul class="doclist">
+<li><a href="L.Prelim.MoreBase.html#lab1">Preliminaries</a>
+<ul class="doclist">
+<li><a href="L.Prelim.ARS.html#lab2">Abstract Reduction Systems</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.L.html#lab3">The call-by-value lambda calculus L</a>
+<ul class="doclist">
+<li><a href="L.L.html#lab4">Syntax</a>
+
+</li>
+<li><a href="L.L.html#lab5">Reduction</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Tactics.Computable.html#lab6">Correctness and time bounds</a>
+<ul class="doclist">
+<li><a href="L.Tactics.Computable.html#lab7">Correctness</a>
+
+</li>
+<li><a href="L.Tactics.ComputableTime.html#lab8">Time bounds</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Tactics.LTactics.html#lab9">Certifying extraction from Coq to L with time bounds</a>
+<ul class="doclist">
+<li><a href="L.Tactics.Extract.html#lab10">Extraction</a>
+<ul class="doclist">
+<li><a href="L.Tactics.Extract.html#lab11">Generation of Scott encodings</a>
+<ul class="doclist">
+<li><a href="L.Tactics.Extract.html#lab12">Examples</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Tactics.Extract.html#lab13">Generation of constructors</a>
+<ul class="doclist">
+<li><a href="L.Tactics.Extract.html#lab14">Examples</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Tactics.Extract.html#lab15">Extracting terms from Coq to L</a>
+<ul class="doclist">
+<li><a href="L.Tactics.Extract.html#lab16">Examples</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Tactics.GenEncode.html#lab17">Generation of encoding functions</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Tactics.Lproc.html#lab18">Symbolic simplification for L</a>
+<ul class="doclist">
+<li><a href="L.Tactics.Lproc.html#lab19">Lproc</a>
+
+</li>
+<li><a href="L.Tactics.Lbeta.html#lab20">Lbeta: symbolic beta reduction</a>
+
+</li>
+<li><a href="L.Tactics.Reflection.html#lab21">Reflexted closure calculus</a>
+<ul class="doclist">
+<li><a href="L.Tactics.LClos.html#lab22">Closure calculus</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Tactics.LClos_Eval.html#lab23">Closure calculus interpreter</a>
+
+</li>
+<li><a href="L.Tactics.Lrewrite.html#lab24">Lrewrite: simplification with corrextness statements</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Tactics.ComputableTactics.html#lab25">Tactics proving correctness</a>
+<ul class="doclist">
+<li><a href="L.Tactics.ComputableDemo.html#lab26">Interactive Demo</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Datatypes.LUnit.html#lab27">Encodings and extracted basic functions</a>
+<ul class="doclist">
+<li><a href="L.Datatypes.LUnit.html#lab28">Encoding of unit</a>
+
+</li>
+<li><a href="L.Datatypes.LBool.html#lab29">Encoding of booleans</a>
+
+</li>
+<li><a href="L.Datatypes.Lists.html#lab30">Encoding of lists</a>
+
+</li>
+<li><a href="L.Datatypes.LNat.html#lab31">Encoding of natural numbers</a>
+
+</li>
+<li><a href="L.Datatypes.LOptions.html#lab32">Encoding of option type</a>
+
+</li>
+<li><a href="L.Datatypes.LProd.html#lab33">Encoding of pairs</a>
+
+</li>
+<li><a href="L.Datatypes.LTerm.html#lab34">Encoding for L-terms</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Functions.Equality.html#lab35">Extracted Functions</a>
+<ul class="doclist">
+<li><a href="L.Functions.Equality.html#lab36">Extracted equality of encoded natural numbers</a>
+
+</li>
+<li><a href="L.Functions.Equality.html#lab37">Extracted equality of encoded terms</a>
+
+</li>
+<li><a href="L.Functions.Encoding.html#lab38">Extracted encoding of natural numbers</a>
+
+</li>
+<li><a href="L.Functions.Encoding.html#lab39">Extracted term encoding</a>
+
+</li>
+<li><a href="L.Functions.Proc.html#lab40">Decidabiity of closedness, boundedness and procness</a>
+
+</li>
+<li><a href="L.Functions.Size.html#lab41">Extracted size of terms</a>
+
+</li>
+<li><a href="L.Functions.Subst.html#lab42">Extracted substitution on terms</a>
+
+</li>
+<li><a href="L.Functions.Ackermann.html#lab43">Computability of Ackermann</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Computability.Seval.html#lab44">Step indexed evaluation</a>
+<ul class="doclist">
+<li><a href="L.Functions.Eval.html#lab45">Extracted step-indexed L-interpreter</a>
+
+</li>
+<li><a href="L.Functions.Eval.html#lab46">Computability of full evaluation</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.TM.TM.html#lab47">Multi-Tape Turing Machines</a>
+<ul class="doclist">
+<li><a href="L.TM.TM.html#lab48">Definition</a>
+<ul class="doclist">
+<li><a href="L.TM.TM.html#lab49">Definition of the tape</a>
+
+</li>
+<li><a href="L.TM.TM.html#lab50">Definition of moves</a>
+<ul class="doclist">
+<li><a href="L.TM.TM.html#lab51">Rewriting Lemmas</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.TM.TM.html#lab52">Machine step</a>
+
+</li>
+<li><a href="L.TM.TM.html#lab53">Rewriting tactics</a>
+
+</li>
+<li><a href="L.TM.TM.html#lab54">Nop Action</a>
+
+</li>
+<li><a href="L.TM.TM.html#lab55">Mirror tapes</a>
+
+</li>
+<li><a href="L.TM.TM.html#lab56">Helping functions for tapes</a>
+
+</li>
+<li><a href="L.TM.TM.html#lab57">Mapping tapes</a>
+
+</li>
+<li><a href="L.TM.TM.html#lab58">Lemmas about <span class="inlinecode"><span class="id" title="var">tape_move_left'</span></span> and <span class="inlinecode"><span class="id" title="var">tape_move_right'</span></span></a>
+<ul class="doclist">
+<li><a href="L.TM.TM.html#lab59">Configurations of TMs</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.TM.TM.html#lab60">Definition of Multi-Tape Turing Machines</a>
+<ul class="doclist">
+<li><a href="L.TM.TM.html#lab61">Machine execution</a>
+
+</li>
+</ul>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.TM.TMEncoding.html#lab62">Extraction of Turing Machine interpreter</a>
+<ul class="doclist">
+<li><a href="L.TM.TMEncoding.html#lab63">Encoding finite types</a>
+
+</li>
+<li><a href="L.TM.TMEncoding.html#lab64">Encoding vectors</a>
+
+</li>
+<li><a href="L.TM.TMEncoding.html#lab65">Encoding Tapes</a>
+
+</li>
+<li><a href="L.TM.TMEncoding.html#lab66">Computability of transition relation</a>
+
+</li>
+<li><a href="L.TM.TMEncoding.html#lab67">Computability of step-ndexed interpreter</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Reductions.TM.html#lab68">Reducing halting problem for TMs to halting problem for L</a>
+
+</li>
+</ul>
+
+</li>
+<li><a href="L.Reductions.H10.html#lab69">Diophantine Equations</a>
+
+</li>
+</ul>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="http://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a>
+</div>
+</div>
+</body>
+
+</html>
