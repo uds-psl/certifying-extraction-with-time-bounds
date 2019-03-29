@@ -8,11 +8,13 @@ This repository contains the Coq formalisation of the paper "A certifying extrac
 
 ## How to compile the code
 
-`git clone https://github.com/uds-psl/certifying-extraction-with-time-bounds.git`
-`cd certifying-extraction-with-time-bounds`
-`git submodule init`
-`git submodule update`
-`make -j 5`
+``` shell
+git clone https://github.com/uds-psl/certifying-extraction-with-time-bounds.git
+cd certifying-extraction-with-time-bounds
+git submodule init
+git submodule update
+make -j 5
+```
 
 The files are tested to compile with `The Coq Proof Assistant, version 8.8.2 (February 2019)`.
 
