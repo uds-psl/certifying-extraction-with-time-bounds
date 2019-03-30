@@ -1,8 +1,9 @@
-(** * Multi-Tape Turing Machines *)
+(** * Case Study 3: Multi-Tape Turing Machines *)
 
-(** ** Definition *)
+(** ** Definition of TMs *)
 
-(* Copied from Maximilians Bachelors thesis*)
+(** Copied from https://github.com/uds-psl/CoqTM/blob/b82fc64550949e26df2d3d5a8c39be46a128f116/theories/TM/TM.v **)
+(** Copyright (c) 2017-2018 Maximilian Wuttke under MIT License **)
 
 (** Definitions of tapes and (unlabelled) multi-tape Turing machines from Asperti, Riciotti "A formalization of multi-tape Turing machines" (2015) and the accompanying Matita code. *)
 
@@ -13,7 +14,7 @@ Section Fix_Sigma.
 
   Variable sig : Type.
 
-  (** *** Definition of the tape *)
+  (* *** Definition of the tape *)
   
   (** A tape is essentially a triple 〈left,current,right〉 where, however, the current symbol could be missing. This may happen for three different reasons: both tapes are empty, we are on the left extremity of a non-empty tape (left overflow), or we are on the right extremity of a non-empty tape (right overflow). *)
   
@@ -85,7 +86,7 @@ Section Fix_Sigma.
   Proof. destruct t; cbn; congruence. Qed.
   
   
-  (** *** Definition of moves *)
+  (* *** Definition of moves *)
   
   Inductive move : Type := L : move | R : move | N : move.
 
@@ -144,7 +145,7 @@ Section Fix_Sigma.
     | N => t
     end.
 
-  (** **** Rewriting Lemmas *)
+  (* **** Rewriting Lemmas *)
 
   Lemma tapeToList_move (t : tape) (D : move) :
     tapeToList (tape_move t D) = tapeToList t.
@@ -177,7 +178,7 @@ Section Fix_Sigma.
   Qed.
 
 
-  (** *** Machine step *)
+  (* *** Machine step *)
 
   (** Writing on the tape *)
   Definition tape_write (t : tape) (s : option sig) :=
@@ -200,7 +201,7 @@ Section Fix_Sigma.
 End Fix_Sigma.
 
 
-(** *** Rewriting tactics *)
+(* *** Rewriting tactics *)
 
 
 (** Tactic to destruct a vector of tapes of known size *)
@@ -262,7 +263,7 @@ Hint Rewrite VectorSpec.const_nth : vector.
 Arguments tapes (sig % type) (n % nat).
 
 
-(** *** Nop Action *)
+(* *** Nop Action *)
 
 (** (∅, N)^n *)
 Section Nop_Action.
@@ -290,7 +291,7 @@ Arguments nop_action {_ _}.
 
 
 
-(** *** Mirror tapes *)
+(* *** Mirror tapes *)
 
 Section MirrorTape.
   Variable (n : nat) (sig : Type).
@@ -410,7 +411,7 @@ Hint Rewrite mirror_tapes_nth : tape.
 
 
 
-(** *** Helping functions for tapes *)
+(* *** Helping functions for tapes *)
 
 Section Tape_Local.
 
@@ -540,7 +541,7 @@ Hint Rewrite tape_left_move_right    using auto : tape.
 Hint Rewrite tape_right_move_left    using auto : tape.
 
 
-(** *** Mapping tapes *)
+(* *** Mapping tapes *)
 
 (* Apply a function to each symbol on the tape *)
 Section MapTape.
@@ -648,7 +649,7 @@ Hint Rewrite mapTape_local : tape.
 
 
 
-(** *** Lemmas about [tape_move_left'] and [tape_move_right'] *)
+(* *** Lemmas about [tape_move_left'] and [tape_move_right'] *)
 Section MatchTapes.
   Variable sig : Type.
 
@@ -699,7 +700,7 @@ Hint Rewrite mirror_tape_move_right' : tape.
 
 
 
-(** **** Configurations of TMs *)
+(* **** Configurations of TMs *)
 
 Record mconfig (sig states:Type) (n:nat): Type :=
   mk_mconfig
@@ -708,7 +709,7 @@ Record mconfig (sig states:Type) (n:nat): Type :=
       ctapes : tapes sig n
     }.
 
-(** *** Definition of Multi-Tape Turing Machines *)
+(* *** Definition of Multi-Tape Turing Machines *)
 Section Semantics.
 
   Variable sig : finType.
@@ -729,7 +730,7 @@ Section Semantics.
 
 
 
-  (** **** Machine execution *)
+  (* **** Machine execution *)
   
   Definition step {n} (M:mTM n) : mconfig sig (states M) n -> mconfig sig (states M) n :=
     fun c =>
@@ -747,7 +748,7 @@ Section Semantics.
   Definition initc n (M : mTM n) tapes :=
     mk_mconfig (n := n) (@start n M) tapes.
 
-  (** **** Realisation *)
+  (* **** Realisation *)
 
   (** Parametrised relations *)
   Definition pRel (sig : Type) (F: Type) (n : nat) := Rel (tapes sig n) (F * tapes sig n).
@@ -765,7 +766,7 @@ Section Semantics.
   Proof. firstorder. Qed.
 
 
-  (** **** Termination/Runtime *)
+  (* **** Termination/Runtime *)
 
   (** A machine is said to "terminate in" a relation [T : Rel (tapes sig n) nat], if for every pair of input tape vectors [t] and step numbers [k] such that T t k, there exists an output configuration [cout] that [M] reaches from [t] in [k] steps. *)
 
@@ -858,7 +859,7 @@ Section Semantics.
   Qed.
 
 
-  (** **** Canonical relations *)
+  (* **** Canonical relations *)
 
   Section Canonical_Correctness.
     Variable (n : nat).
@@ -919,7 +920,7 @@ Definition execTM_p (sig : finType) (n : nat) (F : finType) (pM : { M : mTM sig 
 
 
 
-(** *** Automation of the generation of relations *)
+(* *** Automation of the generation of relations *)
 
 (* Create the smpl tactic databases *)
 Smpl Create TM_Correct.

@@ -60,6 +60,11 @@ Functions/Ackermann.v
 Computability/Seval.v
 Functions/Eval.v
 
+Functions/Universal.v
+
+Computability/Synthetic.v
+Reductions/H10.v
+
 TM/Prelim.v
 TM/TM.v
 TM/TMEncoding.v
@@ -69,8 +74,6 @@ Reductions/SRH_SR.v
 Reductions/SR_MPCP.v
 Reductions/MPCP_PCP.v
 Reductions/PCP_CFG.v
-Reductions/H10.v
 
 Computability/Computability.v
 Computability/MuRec.v
-Computability/Synthetic.v

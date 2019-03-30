@@ -3,8 +3,7 @@
 
 Yannick Forster <forster@ps.uni-saarland.de>, Fabian Kunze <kunze@ps.uni-saarland.de>, 
 
-
-This repository contains the Coq formalisation of the paper "A certifying extraction with time bounds from Coq to call-by-value λ-calculus", currently under review.
+This repository contains the Coq formalisation of the paper [A certifying extraction with time bounds from Coq to call-by-value λ-calculus](https://www.ps.uni-saarland.de/Publications/details/ForsterKunze:2019:Certifying-extraction.html), currently under review.
 
 ## How to compile the code
 

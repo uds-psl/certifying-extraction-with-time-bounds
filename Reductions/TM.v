@@ -2,7 +2,7 @@ Require Import TM.TMEncoding TM.TM.
 Require Import MuRec.
 Require Import Undecidability.FOL.Reductions.
 
-(** ** Reducing halting problem for TMs to halting problem for L *)
+(** ** Turing machine halting reduces to L halting *)
 Theorem Halt_eva :
   Halt ⪯ converges.
 Proof.

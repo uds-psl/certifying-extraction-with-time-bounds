@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link href="coqdoc.css" rel="stylesheet" type="text/css" />
+<link href="coqdocjs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="coqdocjs.js"></script>
+</head>
+
+<body onload="document.getElementById('content').focus()">
+  <div id="header">
+    <span class="left">
+      <span class="modulename"> <script> document.write(document.title) </script> </span>
+    </span>
+
+    <span class="button" id="toggle-proofs"></span>
+
+    <span class="right">
+      <a href="../">Project Page</a>
+      <a href="./indexpage.html"> Index </a>
+      <a href="./toc.html"> Table of Contents </a>
+    </span>
+</div>
+    <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
+    <div id="main">
+<div class="code">
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="L.Computability.Seval.html#"><span class="id" title="library">Seval</span></a> <a class="idref" href="L.Datatypes.LBool.html#"><span class="id" title="library">LBool</span></a> <a class="idref" href="L.Datatypes.LOptions.html#"><span class="id" title="library">LOptions</span></a> <a class="idref" href="L.Functions.Equality.html#"><span class="id" title="library">Equality</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab46"></a><h1 class="section">Case Study 1: Universal L-term</h1>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="comment">(*&nbsp;**&nbsp;Encoding&nbsp;for&nbsp;natural&nbsp;numers&nbsp;*)</span><br/>
+
+<br/>
+<span class="id" title="var">Run</span> <span class="id" title="var">TemplateProgram</span> (<a class="idref" href="L.Tactics.GenEncode.html#tmGenEncode"><span class="id" title="definition">tmGenEncode</span></a> "nat_enc" <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>).<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">nat_enc_correct</span> : <span class="id" title="var">Lrewrite</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a name="termT_S"><span class="id" title="instance">termT_S</span></a> : <a class="idref" href="L.Tactics.ComputableTactics.html#ead6f414f9e843f23469479f9eebddea"><span class="id" title="notation">computableTime</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>1<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#tt"><span class="id" title="constructor">tt</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>. <span class="id" title="var">extract</span> <span class="id" title="tactic">constructor</span>. <span class="id" title="var">solverec</span>. <span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab47"></a><h2 class="section">Encoding for L-terms</h2>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="var">Run</span> <span class="id" title="var">TemplateProgram</span> (<a class="idref" href="L.Tactics.GenEncode.html#tmGenEncode"><span class="id" title="definition">tmGenEncode</span></a> "term_enc" <a class="idref" href="L.L.html#term"><span class="id" title="inductive">term</span></a>).<br/>
+<span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">term_enc_correct</span> : <span class="id" title="var">Lrewrite</span>.<br/>
+
+<br/>
+<span class="comment">(*&nbsp;register&nbsp;the&nbsp;non-constant&nbsp;constructors&nbsp;*)</span><br/>
+<span class="id" title="keyword">Instance</span> <a name="term_var"><span class="id" title="instance">term_var</span></a> : <a class="idref" href="L.Tactics.ComputableTactics.html#ead6f414f9e843f23469479f9eebddea"><span class="id" title="notation">computableTime</span></a> <a class="idref" href="L.L.html#var"><span class="id" title="constructor">var</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">n</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>1<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#tt"><span class="id" title="constructor">tt</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>. <span class="id" title="var">extract</span> <span class="id" title="tactic">constructor</span>. <span class="id" title="var">solverec</span>. <span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a name="term_app"><span class="id" title="instance">term_app</span></a> : <a class="idref" href="L.Tactics.ComputableTactics.html#ead6f414f9e843f23469479f9eebddea"><span class="id" title="notation">computableTime</span></a> <a class="idref" href="L.L.html#app"><span class="id" title="constructor">app</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">s1</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>1<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><span class="id" title="keyword">fun</span> <span class="id" title="var">s2</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>1<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#tt"><span class="id" title="constructor">tt</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)))</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>. <span class="id" title="var">extract</span> <span class="id" title="tactic">constructor</span>. <span class="id" title="var">solverec</span>. <span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a name="term_lam"><span class="id" title="instance">term_lam</span></a> : <a class="idref" href="L.Tactics.ComputableTactics.html#ead6f414f9e843f23469479f9eebddea"><span class="id" title="notation">computableTime</span></a> <a class="idref" href="L.L.html#lam"><span class="id" title="constructor">lam</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">s</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>1<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#tt"><span class="id" title="constructor">tt</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>. <span class="id" title="var">extract</span> <span class="id" title="tactic">constructor</span>. <span class="id" title="var">solverec</span>. <span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab48"></a><h2 class="section">Extracted equality on natural numbers</h2>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a name="termT_nat_eqb"><span class="id" title="instance">termT_nat_eqb</span></a>: <a class="idref" href="L.Tactics.ComputableTactics.html#ead6f414f9e843f23469479f9eebddea"><span class="id" title="notation">computableTime</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Arith.PeanoNat.html#Nat.eqb"><span class="id" title="definition">Nat.eqb</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">x</span> <span class="id" title="var">xT</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>5<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,(</span></a><span class="id" title="keyword">fun</span> <span class="id" title="var">y</span> <span class="id" title="var">yT</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Peano.html#697e4695610f677ae98a52af81f779d2"><span class="id" title="notation">(</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Nat.html#min"><span class="id" title="definition">min</span></a> <a class="idref" href="L.Functions.Universal.html#x"><span class="id" title="variable">x</span></a> <a class="idref" href="L.Functions.Universal.html#y"><span class="id" title="variable">y</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Peano.html#697e4695610f677ae98a52af81f779d2"><span class="id" title="notation">)*</span></a>15 <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> 8<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#tt"><span class="id" title="constructor">tt</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)))</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>. <span class="id" title="var">extract</span>. <span class="id" title="var">solverec</span>. <span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab49"></a><h2 class="section">Extracted substitution</h2>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a name="term_substT"><span class="id" title="instance">term_substT</span></a> :<br/>
+&nbsp;&nbsp;<a class="idref" href="L.Tactics.ComputableTactics.html#ead6f414f9e843f23469479f9eebddea"><span class="id" title="notation">computableTime</span></a> <a class="idref" href="L.L.html#subst"><span class="id" title="definition">subst</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">s</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>5<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><span class="id" title="keyword">fun</span> <span class="id" title="var">n</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>1<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><span class="id" title="keyword">fun</span> <span class="id" title="var">t</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a> 15 <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Peano.html#697e4695610f677ae98a52af81f779d2"><span class="id" title="notation">*</span></a> <a class="idref" href="L.Functions.Universal.html#n"><span class="id" title="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Peano.html#697e4695610f677ae98a52af81f779d2"><span class="id" title="notation">*</span></a> <a class="idref" href="L.L.html#size"><span class="id" title="definition">size</span></a> <a class="idref" href="L.Functions.Universal.html#s"><span class="id" title="variable">s</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> 43 <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Peano.html#697e4695610f677ae98a52af81f779d2"><span class="id" title="notation">*</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Arith.PeanoNat.html#4c362bcf0e947e2792a2e6989b44aeb0"><span class="id" title="notation">(</span></a><a class="idref" href="L.L.html#size"><span class="id" title="definition">size</span></a> <a class="idref" href="L.Functions.Universal.html#s"><span class="id" title="variable">s</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Arith.PeanoNat.html#4c362bcf0e947e2792a2e6989b44aeb0"><span class="id" title="notation">)</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Arith.PeanoNat.html#4c362bcf0e947e2792a2e6989b44aeb0"><span class="id" title="notation">^</span></a> 2 <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Peano.html#b3eea360671e1b32b18a26e15b3aace3"><span class="id" title="notation">+</span></a> 13<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#tt"><span class="id" title="constructor">tt</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)))))</span></a>).<br/>
+<span class="id" title="keyword">Proof</span>. <span class="id" title="var">extract</span>. <span class="id" title="var">solverec</span>. <span class="id" title="keyword">Qed</span>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab50"></a><h2 class="section">Extracted step-indexed L-interpreter</h2>
+
+</div>
+<div class="code">
+
+<br/>
+<span class="id" title="keyword">Instance</span> <a name="term_eva"><span class="id" title="instance">term_eva</span></a> : <a class="idref" href="L.Tactics.Computable.html#computable"><span class="id" title="class">computable</span></a> <a class="idref" href="L.Computability.Seval.html#eva"><span class="id" title="definition">eva</span></a>.<br/>
+<span class="id" title="keyword">Proof</span>. <span class="id" title="var">extract</span>. <span class="id" title="keyword">Qed</span>.<br/>
+</div>
+</div>
+<div id="footer">
+  Generated by <a href="http://coq.inria.fr/">coqdoc</a> and improved with <a href="https://github.com/tebbi/coqdocjs">CoqdocJS</a>
+</div>
+</div>
+</body>
+
+</html>

@@ -29,23 +29,18 @@
 </div>
 
 <div class="doc">
-<a name="lab47"></a><h1 class="section">Multi-Tape Turing Machines</h1>
+<a name="lab52"></a><h1 class="section">Case Study 3: Multi-Tape Turing Machines</h1>
 
 <div class="paragraph"> </div>
 
-<a name="lab48"></a><h2 class="section">Definition</h2>
+<a name="lab53"></a><h2 class="section">Definition of TMs</h2>
 
-</div>
-<div class="code">
+<div class="paragraph"> </div>
 
-<br/>
-<span class="comment">(*&nbsp;Copied&nbsp;from&nbsp;Maximilians&nbsp;Bachelors&nbsp;thesis*)</span><br/>
+ Copied from https://github.com/uds-psl/CoqTM/blob/b82fc64550949e26df2d3d5a8c39be46a128f116/theories/TM/TM.v  Copyright (c) 2017-2018 Maximilian Wuttke under MIT License 
+<div class="paragraph"> </div>
 
-<br/>
-</div>
-
-<div class="doc">
-Definitions of tapes and (unlabelled) multi-tape Turing machines from Asperti, Riciotti "A formalization of multi-tape Turing machines" (2015) and the accompanying Matita code. 
+ Definitions of tapes and (unlabelled) multi-tape Turing machines from Asperti, Riciotti "A formalization of multi-tape Turing machines" (2015) and the accompanying Matita code. 
 </div>
 <div class="code">
 
@@ -60,14 +55,13 @@ Definitions of tapes and (unlabelled) multi-tape Turing machines from Asperti, R
 &nbsp;&nbsp;<span class="id" title="keyword">Variable</span> <a name="Fix_Sigma.sig"><span class="id" title="variable">sig</span></a> : <span class="id" title="keyword">Type</span>.<br/>
 
 <br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;***&nbsp;Definition&nbsp;of&nbsp;the&nbsp;tape&nbsp;*)</span><br/>
+
+<br/>
 </div>
 
 <div class="doc">
-<a name="lab49"></a><h3 class="section">Definition of the tape</h3>
-
-<div class="paragraph"> </div>
-
- A tape is essentially a triple 〈left,current,right〉 where, however, the current symbol could be missing. This may happen for three different reasons: both tapes are empty, we are on the left extremity of a non-empty tape (left overflow), or we are on the right extremity of a non-empty tape (right overflow). 
+A tape is essentially a triple 〈left,current,right〉 where, however, the current symbol could be missing. This may happen for three different reasons: both tapes are empty, we are on the left extremity of a non-empty tape (left overflow), or we are on the right extremity of a non-empty tape (right overflow). 
 <div class="paragraph"> </div>
 
  Note that the alphabet has type <span class="inlinecode"><span class="id" title="keyword">Type</span></span>, not <span class="inlinecode"><span class="id" title="var">finType</span></span>. 
@@ -157,13 +151,7 @@ Lemmas for <span class="inlinecode"><span class="id" title="var">midtape</span><
 <br/>
 
 <br/>
-</div>
-
-<div class="doc">
-<a name="lab50"></a><h3 class="section">Definition of moves</h3>
-
-</div>
-<div class="code">
+&nbsp;&nbsp;<span class="comment">(*&nbsp;***&nbsp;Definition&nbsp;of&nbsp;moves&nbsp;*)</span><br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Inductive</span> <a name="move"><span class="id" title="inductive">move</span></a> : <span class="id" title="keyword">Type</span> := <a name="L"><span class="id" title="constructor">L</span></a> : <a class="idref" href="L.TM.TM.html#move"><span class="id" title="inductive">move</span></a> | <a name="R"><span class="id" title="constructor">R</span></a> : <a class="idref" href="L.TM.TM.html#move"><span class="id" title="inductive">move</span></a> | <a name="N"><span class="id" title="constructor">N</span></a> : <a class="idref" href="L.TM.TM.html#move"><span class="id" title="inductive">move</span></a>.<br/>
@@ -244,13 +232,7 @@ We outsource the second <span class="inlinecode"><span class="id" title="keyword
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-</div>
-
-<div class="doc">
-<a name="lab51"></a><h4 class="section">Rewriting Lemmas</h4>
-
-</div>
-<div class="code">
+&nbsp;&nbsp;<span class="comment">(*&nbsp;****&nbsp;Rewriting&nbsp;Lemmas&nbsp;*)</span><br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="tapeToList_move"><span class="id" title="lemma">tapeToList_move</span></a> (<span class="id" title="var">t</span> : <a class="idref" href="L.TM.TM.html#tape"><span class="id" title="inductive">tape</span></a>) (<span class="id" title="var">D</span> : <a class="idref" href="L.TM.TM.html#move"><span class="id" title="inductive">move</span></a>) :<br/>
@@ -288,14 +270,13 @@ We outsource the second <span class="inlinecode"><span class="id" title="keyword
 &nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
 
 <br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;***&nbsp;Machine&nbsp;step&nbsp;*)</span><br/>
+
+<br/>
 </div>
 
 <div class="doc">
-<a name="lab52"></a><h3 class="section">Machine step</h3>
-
-<div class="paragraph"> </div>
-
- Writing on the tape 
+Writing on the tape 
 </div>
 <div class="code">
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="tape_write"><span class="id" title="definition">tape_write</span></a> (<span class="id" title="var">t</span> : <a class="idref" href="L.TM.TM.html#tape"><span class="id" title="inductive">tape</span></a>) (<span class="id" title="var">s</span> : <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#option"><span class="id" title="inductive">option</span></a> <a class="idref" href="L.TM.TM.html#Fix_Sigma.sig"><span class="id" title="variable">sig</span></a>) :=<br/>
@@ -337,14 +318,13 @@ Read characters on all tapes
 <span class="id" title="keyword">End</span> <a class="idref" href="L.TM.TM.html#Fix_Sigma"><span class="id" title="section">Fix_Sigma</span></a>.<br/>
 
 <br/>
+<span class="comment">(*&nbsp;***&nbsp;Rewriting&nbsp;tactics&nbsp;*)</span><br/>
+
+<br/>
 </div>
 
 <div class="doc">
-<a name="lab53"></a><h3 class="section">Rewriting tactics</h3>
-
-<div class="paragraph"> </div>
-
- Tactic to destruct a vector of tapes of known size 
+Tactic to destruct a vector of tapes of known size 
 </div>
 <div class="code">
 <span class="id" title="keyword">Ltac</span> <span class="id" title="var">destruct_tapes</span> := <span class="id" title="tactic">unfold</span> <a class="idref" href="L.TM.TM.html#tapes"><span class="id" title="definition">tapes</span></a> <span class="id" title="tactic">in</span> *; <span class="id" title="var">destruct_vector</span>.<br/>
@@ -424,14 +404,13 @@ Set Notation scopes for tapes, so that the alphabet of the tape is parsed as a t
 <span class="id" title="var">Arguments</span> <a class="idref" href="L.TM.TM.html#tapes"><span class="id" title="definition">tapes</span></a> (<span class="id" title="var">sig</span> % <span class="id" title="keyword">type</span>) (<span class="id" title="var">n</span> % <span class="id" title="var">nat</span>).<br/>
 
 <br/>
+<span class="comment">(*&nbsp;***&nbsp;Nop&nbsp;Action&nbsp;*)</span><br/>
+
+<br/>
 </div>
 
 <div class="doc">
-<a name="lab54"></a><h3 class="section">Nop Action</h3>
-
-<div class="paragraph"> </div>
-
- (∅, N)^n 
+(∅, N)^n 
 </div>
 <div class="code">
 <span class="id" title="keyword">Section</span> <a name="Nop_Action"><span class="id" title="section">Nop_Action</span></a>.<br/>
@@ -465,13 +444,7 @@ Make <span class="inlinecode"><span class="id" title="var">n</span></span> and <
 <span class="id" title="var">Arguments</span> <a class="idref" href="L.TM.TM.html#nop_action"><span class="id" title="definition">nop_action</span></a> {<span class="id" title="var">_</span> <span class="id" title="var">_</span>}.<br/>
 
 <br/>
-</div>
-
-<div class="doc">
-<a name="lab55"></a><h3 class="section">Mirror tapes</h3>
-
-</div>
-<div class="code">
+<span class="comment">(*&nbsp;***&nbsp;Mirror&nbsp;tapes&nbsp;*)</span><br/>
 
 <br/>
 <span class="id" title="keyword">Section</span> <a name="MirrorTape"><span class="id" title="section">MirrorTape</span></a>.<br/>
@@ -613,13 +586,7 @@ Make <span class="inlinecode"><span class="id" title="var">n</span></span> and <
 <span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="L.TM.TM.html#mirror_tapes_nth"><span class="id" title="lemma">mirror_tapes_nth</span></a> : <span class="id" title="var">tape</span>.<br/>
 
 <br/>
-</div>
-
-<div class="doc">
-<a name="lab56"></a><h3 class="section">Helping functions for tapes</h3>
-
-</div>
-<div class="code">
+<span class="comment">(*&nbsp;***&nbsp;Helping&nbsp;functions&nbsp;for&nbsp;tapes&nbsp;*)</span><br/>
 
 <br/>
 <span class="id" title="keyword">Section</span> <a name="Tape_Local"><span class="id" title="section">Tape_Local</span></a>.<br/>
@@ -784,13 +751,7 @@ The current symbol :: left symbols
 <span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="L.TM.TM.html#tape_right_move_left"><span class="id" title="lemma">tape_right_move_left</span></a>    <span class="id" title="keyword">using</span> <span class="id" title="tactic">auto</span> : <span class="id" title="var">tape</span>.<br/>
 
 <br/>
-</div>
-
-<div class="doc">
-<a name="lab57"></a><h3 class="section">Mapping tapes</h3>
-
-</div>
-<div class="code">
+<span class="comment">(*&nbsp;***&nbsp;Mapping&nbsp;tapes&nbsp;*)</span><br/>
 
 <br/>
 <span class="comment">(*&nbsp;Apply&nbsp;a&nbsp;function&nbsp;to&nbsp;each&nbsp;symbol&nbsp;on&nbsp;the&nbsp;tape&nbsp;*)</span><br/>
@@ -921,13 +882,7 @@ Rewriting Hints
 <span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="L.TM.TM.html#mapTape_local"><span class="id" title="lemma">mapTape_local</span></a> : <span class="id" title="var">tape</span>.<br/>
 
 <br/>
-</div>
-
-<div class="doc">
-<a name="lab58"></a><h3 class="section">Lemmas about <span class="inlinecode"><span class="id" title="var">tape_move_left'</span></span> and <span class="inlinecode"><span class="id" title="var">tape_move_right'</span></span></h3>
-
-</div>
-<div class="code">
+<span class="comment">(*&nbsp;***&nbsp;Lemmas&nbsp;about&nbsp;<span class="inlinecode"><span class="id" title="var">tape_move_left'</span></span>&nbsp;and&nbsp;<span class="inlinecode"><span class="id" title="var">tape_move_right'</span></span>&nbsp;*)</span><br/>
 <span class="id" title="keyword">Section</span> <a name="MatchTapes"><span class="id" title="section">MatchTapes</span></a>.<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Variable</span> <a name="MatchTapes.sig"><span class="id" title="variable">sig</span></a> : <span class="id" title="keyword">Type</span>.<br/>
 
@@ -985,13 +940,7 @@ Rewriting Hints
 <span class="id" title="keyword">Hint Rewrite</span> <a class="idref" href="L.TM.TM.html#mirror_tape_move_right'"><span class="id" title="lemma">mirror_tape_move_right'</span></a> : <span class="id" title="var">tape</span>.<br/>
 
 <br/>
-</div>
-
-<div class="doc">
-<a name="lab59"></a><h4 class="section">Configurations of TMs</h4>
-
-</div>
-<div class="code">
+<span class="comment">(*&nbsp;****&nbsp;Configurations&nbsp;of&nbsp;TMs&nbsp;*)</span><br/>
 
 <br/>
 <span class="id" title="keyword">Record</span> <a name="mconfig"><span class="id" title="record">mconfig</span></a> (<span class="id" title="var">sig</span> <span class="id" title="var">states</span>:<span class="id" title="keyword">Type</span>) (<span class="id" title="var">n</span>:<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>): <span class="id" title="keyword">Type</span> :=<br/>
@@ -1002,13 +951,7 @@ Rewriting Hints
 &nbsp;&nbsp;&nbsp;&nbsp;}.<br/>
 
 <br/>
-</div>
-
-<div class="doc">
-<a name="lab60"></a><h3 class="section">Definition of Multi-Tape Turing Machines</h3>
-
-</div>
-<div class="code">
+<span class="comment">(*&nbsp;***&nbsp;Definition&nbsp;of&nbsp;Multi-Tape&nbsp;Turing&nbsp;Machines&nbsp;*)</span><br/>
 <span class="id" title="keyword">Section</span> <a name="Semantics"><span class="id" title="section">Semantics</span></a>.<br/>
 
 <br/>
@@ -1033,13 +976,7 @@ Labelled Multi-Tape Turing Machines
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="pTM"><span class="id" title="definition">pTM</span></a> (<span class="id" title="var">F</span>: <span class="id" title="keyword">Type</span>) (<span class="id" title="var">n</span>:<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#nat"><span class="id" title="inductive">nat</span></a>) := <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Specif.html#50b5d8dd6be4fba768e35617e518ad76"><span class="id" title="notation">{</span></a> <span class="id" title="var">M</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Specif.html#50b5d8dd6be4fba768e35617e518ad76"><span class="id" title="notation">:</span></a> <a class="idref" href="L.TM.TM.html#mTM"><span class="id" title="record">mTM</span></a> <a class="idref" href="L.TM.TM.html#n"><span class="id" title="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Specif.html#50b5d8dd6be4fba768e35617e518ad76"><span class="id" title="notation">&amp;</span></a> <a class="idref" href="L.TM.TM.html#states"><span class="id" title="projection">states</span></a> <a class="idref" href="L.TM.TM.html#M"><span class="id" title="variable">M</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="L.TM.TM.html#F"><span class="id" title="variable">F</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Specif.html#50b5d8dd6be4fba768e35617e518ad76"><span class="id" title="notation">}</span></a>.<br/>
 
 <br/>
-</div>
-
-<div class="doc">
-<a name="lab61"></a><h4 class="section">Machine execution</h4>
-
-</div>
-<div class="code">
+&nbsp;&nbsp;<span class="comment">(*&nbsp;****&nbsp;Machine&nbsp;execution&nbsp;*)</span><br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="step"><span class="id" title="definition">step</span></a> {<span class="id" title="var">n</span>} (<span class="id" title="var">M</span>:<a class="idref" href="L.TM.TM.html#mTM"><span class="id" title="record">mTM</span></a> <a class="idref" href="L.TM.TM.html#n"><span class="id" title="variable">n</span></a>) : <a class="idref" href="L.TM.TM.html#mconfig"><span class="id" title="record">mconfig</span></a> <a class="idref" href="L.TM.TM.html#Semantics.sig"><span class="id" title="variable">sig</span></a> (<a class="idref" href="L.TM.TM.html#states"><span class="id" title="projection">states</span></a> <a class="idref" href="L.TM.TM.html#M"><span class="id" title="variable">M</span></a>) <a class="idref" href="L.TM.TM.html#n"><span class="id" title="variable">n</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="L.TM.TM.html#mconfig"><span class="id" title="record">mconfig</span></a> <a class="idref" href="L.TM.TM.html#Semantics.sig"><span class="id" title="variable">sig</span></a> (<a class="idref" href="L.TM.TM.html#states"><span class="id" title="projection">states</span></a> <a class="idref" href="L.TM.TM.html#M"><span class="id" title="variable">M</span></a>) <a class="idref" href="L.TM.TM.html#n"><span class="id" title="variable">n</span></a> :=<br/>
@@ -1066,7 +1003,7 @@ Run the machine i steps until it halts
 &nbsp;&nbsp;Definition&nbsp;initc&nbsp;n&nbsp;(M&nbsp;:&nbsp;mTM&nbsp;n)&nbsp;tapes&nbsp;:=<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;mk_mconfig&nbsp;(n&nbsp;:=&nbsp;n)&nbsp;(@start&nbsp;n&nbsp;M)&nbsp;tapes.<br/>
 <br/>
-&nbsp;&nbsp;<span class="comment">(**&nbsp;****&nbsp;Realisation&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;****&nbsp;Realisation&nbsp;*)</span><br/>
 <br/>
 &nbsp;&nbsp;<span class="comment">(**&nbsp;Parametrised&nbsp;relations&nbsp;*)</span><br/>
 &nbsp;&nbsp;Definition&nbsp;pRel&nbsp;(sig&nbsp;:&nbsp;Type)&nbsp;(F:&nbsp;Type)&nbsp;(n&nbsp;:&nbsp;nat)&nbsp;:=&nbsp;Rel&nbsp;(tapes&nbsp;sig&nbsp;n)&nbsp;(F&nbsp;*&nbsp;tapes&nbsp;sig&nbsp;n).<br/>
@@ -1084,7 +1021,7 @@ Run the machine i steps until it halts
 &nbsp;&nbsp;Proof.&nbsp;firstorder.&nbsp;Qed.<br/>
 <br/>
 <br/>
-&nbsp;&nbsp;<span class="comment">(**&nbsp;****&nbsp;Termination/Runtime&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;****&nbsp;Termination/Runtime&nbsp;*)</span><br/>
 <br/>
 &nbsp;&nbsp;<span class="comment">(**&nbsp;A&nbsp;machine&nbsp;is&nbsp;said&nbsp;to&nbsp;"terminate&nbsp;in"&nbsp;a&nbsp;relation&nbsp;<span class="inlinecode"><span class="id" title="var">T</span></span> <span class="inlinecode">:</span> <span class="inlinecode"><span class="id" title="var">Rel</span></span> <span class="inlinecode">(<span class="id" title="var">tapes</span></span> <span class="inlinecode"><span class="id" title="var">sig</span></span> <span class="inlinecode"><span class="id" title="var">n</span>)</span> <span class="inlinecode"><span class="id" title="var">nat</span></span>,&nbsp;if&nbsp;for&nbsp;every&nbsp;pair&nbsp;of&nbsp;input&nbsp;tape&nbsp;vectors&nbsp;<span class="inlinecode"><span class="id" title="var">t</span></span>&nbsp;and&nbsp;step&nbsp;numbers&nbsp;<span class="inlinecode"><span class="id" title="var">k</span></span>&nbsp;such&nbsp;that&nbsp;T&nbsp;t&nbsp;k,&nbsp;there&nbsp;exists&nbsp;an&nbsp;output&nbsp;configuration&nbsp;<span class="inlinecode"><span class="id" title="var">cout</span></span>&nbsp;that&nbsp;<span class="inlinecode"><span class="id" title="var">M</span></span>&nbsp;reaches&nbsp;from&nbsp;<span class="inlinecode"><span class="id" title="var">t</span></span>&nbsp;in&nbsp;<span class="inlinecode"><span class="id" title="var">k</span></span>&nbsp;steps.&nbsp;*)</span><br/>
 <br/>
@@ -1232,7 +1169,7 @@ Definition&nbsp;execTM_p&nbsp;(sig&nbsp;:&nbsp;finType)&nbsp;(n&nbsp;:&nbsp;nat)
 <br/>
 <br/>
 <br/>
-<span class="comment">(**&nbsp;***&nbsp;Automation&nbsp;of&nbsp;the&nbsp;generation&nbsp;of&nbsp;relations&nbsp;*)</span><br/>
+<span class="comment">(*&nbsp;***&nbsp;Automation&nbsp;of&nbsp;the&nbsp;generation&nbsp;of&nbsp;relations&nbsp;*)</span><br/>
 <br/>
 <span class="comment">(*&nbsp;Create&nbsp;the&nbsp;smpl&nbsp;tactic&nbsp;databases&nbsp;*)</span><br/>
 Smpl&nbsp;Create&nbsp;TM_Correct.<br/>

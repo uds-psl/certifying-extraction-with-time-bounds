@@ -5,7 +5,7 @@ Require Import LTactics LNat Lists LProd MuRec Synthetic GenEncode.
 
 
 
-(** * Diophantine Equations *)
+(** * Case Study 2: Diophantine Equations *)
 
 Inductive poly : Set :=
     poly_cnst : nat -> poly 

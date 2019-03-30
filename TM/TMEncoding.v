@@ -204,7 +204,7 @@ Section fix_sig.
   Variable sig : Type.
   Context `{reg_sig : registered sig}.
 
-  (** *** Encoding Tapes *)
+  (** *** Encoding tapes *)
   Section reg_tapes.
     Implicit Type (t : TM.tape sig).
 
