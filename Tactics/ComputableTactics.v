@@ -183,7 +183,6 @@ Ltac cstep :=
            |  S ?n =>
               eexists;
               eapply computesExpStep;[try recStep P;extractCorrectCrush;shelveIfUnsolved "pos5"|Lproc;shelveIfUnsolved "pos6"|];
-              (*simple notypeclasses refine (_:computes (_ ~> _) _ _ (fun x xInt xNorm => (_,_)));try exact tt;shelve_unifiable;*)
               let x := fresh "x" in  
               let xInt := fresh x "Int" in
               let xInts := fresh x "Ints" in
@@ -217,7 +216,6 @@ Ltac cstep :=
       let xNorm := fresh x "Norm" in
       let xInts := fresh x "Ints" in
       let vProc := fresh "vProc" in
-      (*simple notypeclasses refine (_:computes (tt1 ~> tt2) _ _ (fun x xInt xNorm => (_,_)));try exact tt;shelve_unifiable;*)
       eapply computesTyArr;[try Lproc;shelveIfUnsolved "pos1"|idtac];
       intros x xInt xInts;
       change xInt with (@ext _ _ x (Build_computable xInts));

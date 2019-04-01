@@ -175,7 +175,7 @@ Section Map.
       | inl x => inl (f x)
       | inr y => inr y
       end.
-
+  
   Definition map_inr : (Y -> Z) -> X + Y -> X + Z :=
     fun f a =>
       match a with

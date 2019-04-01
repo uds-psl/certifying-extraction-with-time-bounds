@@ -37,50 +37,30 @@
 <div class="code">
 
 <br/>
-<span class="comment">(*&nbsp;Definition&nbsp;bool_enc&nbsp;(b:bool)&nbsp;:&nbsp;term:=&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;Eval&nbsp;simpl&nbsp;in&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;b&nbsp;then&nbsp;.\"t",&nbsp;"f";&nbsp;"t"&nbsp;else&nbsp;.\"t",&nbsp;"f";&nbsp;"f".&nbsp;*)</span><br/>
-
-<br/>
 <span class="id" title="var">Run</span> <span class="id" title="var">TemplateProgram</span> (<a class="idref" href="L.Tactics.GenEncode.html#tmGenEncode"><span class="id" title="definition">tmGenEncode</span></a> "bool_enc" <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>).<br/>
 <span class="comment">(*&nbsp;For&nbsp;each&nbsp;encoding,&nbsp;Lrewrite&nbsp;must&nbsp;contain&nbsp;an&nbsp;lemma&nbsp;that&nbsp;solves&nbsp;goals&nbsp;like&nbsp;"encode&nbsp;b&nbsp;s&nbsp;t&nbsp;&gt;*&nbsp;match&nbsp;...end".&nbsp;The&nbsp;database&nbsp;Lrewrite&nbsp;also&nbsp;calls&nbsp;Lproc&nbsp;to&nbsp;discharge&nbsp;the&nbsp;other&nbsp;assumptions&nbsp;*)</span><br/>
 <span class="id" title="keyword">Hint Resolve</span> <span class="id" title="var">bool_enc_correct</span> : <span class="id" title="var">Lrewrite</span>.<br/>
-
-<br/>
-<span class="comment">(*&nbsp;register&nbsp;thefunctional&nbsp;constructors&nbsp;(not&nbsp;neccessary&nbsp;here)&nbsp;*)</span><br/>
-<span class="comment">(*<br/>
-Instance&nbsp;true_term&nbsp;:&nbsp;computableTime&nbsp;true&nbsp;tt.<br/>
-Proof.<br/>
-&nbsp;&nbsp;extract&nbsp;constructor.<br/>
-&nbsp;&nbsp;solverec.<br/>
-Defined.<br/>
-<br/>
-Instance&nbsp;false_term&nbsp;:&nbsp;computableTime&nbsp;false&nbsp;tt.<br/>
-Proof.<br/>
-&nbsp;&nbsp;extract&nbsp;constructor.<br/>
-&nbsp;&nbsp;solverec.<br/>
-Defined.*)</span><br/>
 
 <br/>
 <span class="id" title="keyword">Instance</span> <a name="term_negb"><span class="id" title="instance">term_negb</span></a> : <a class="idref" href="L.Tactics.ComputableTactics.html#ead6f414f9e843f23469479f9eebddea"><span class="id" title="notation">computableTime</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#negb"><span class="id" title="definition">negb</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>3<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#tt"><span class="id" title="constructor">tt</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a>).<br/>
 <span class="id" title="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="var">extract</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="var">solverec</span>.<br/>
-<span class="id" title="keyword">Defined</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
 
 <br/>
 <span class="id" title="keyword">Instance</span> <a name="term_andb"><span class="id" title="instance">term_andb</span></a> : <a class="idref" href="L.Tactics.ComputableTactics.html#ead6f414f9e843f23469479f9eebddea"><span class="id" title="notation">computableTime</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#andb"><span class="id" title="definition">andb</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>1<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>3<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#tt"><span class="id" title="constructor">tt</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">))</span></a>).<br/>
 <span class="id" title="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="var">extract</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="var">solverec</span>.<br/>
-<span class="id" title="keyword">Defined</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
 
 <br/>
 <span class="id" title="keyword">Instance</span> <a name="term_orb"><span class="id" title="instance">term_orb</span></a> : <a class="idref" href="L.Tactics.ComputableTactics.html#ead6f414f9e843f23469479f9eebddea"><span class="id" title="notation">computableTime</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#orb"><span class="id" title="definition">orb</span></a> (<span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>1<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><span class="id" title="keyword">fun</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a>3<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#tt"><span class="id" title="constructor">tt</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">))</span></a>).<br/>
 <span class="id" title="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="var">extract</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="var">solverec</span>.<br/>
-<span class="id" title="keyword">Defined</span>.<br/>
+<span class="id" title="keyword">Qed</span>.<br/>
 
 <br/>
 </div>

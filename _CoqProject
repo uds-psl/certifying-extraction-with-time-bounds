@@ -41,24 +41,16 @@ Tactics/mixedTactics.v
 
 Datatypes/LUnit.v
 Datatypes/LBool.v
-Datatypes/Lists.v
 Datatypes/LNat.v
+Datatypes/Lists.v
 Datatypes/LOptions.v
 Datatypes/LProd.v
-Datatypes/LBinNums.v
 Datatypes/LTerm.v
 
+
 Functions/Equality.v
-Functions/Encoding.v
-Functions/Proc.v
-Functions/Size.v
-Functions/Subst.v
-
-Functions/Unenc.v
 Functions/Ackermann.v
-
 Computability/Seval.v
-Functions/Eval.v
 
 Functions/Universal.v
 

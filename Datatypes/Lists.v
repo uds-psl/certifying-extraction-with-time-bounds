@@ -16,19 +16,13 @@ Section Fix_X.
   Proof.
     extract constructor.
     solverec.
-  Defined.
-
-  (* Lemma list_enc_correct (A:list X) (s t:term): proc s -> proc t -> enc A s t >(2) match A with nil => s | cons a A' => t (enc a) (enc (A')) end. *)
-  (* Proof. *)
-  (*   extract match.  *)
-  (* Qed. *)
-  
+  Qed.
 
   Global Instance termT_append : computableTime (@List.app X) (fun A _ => (5,fun B _ => (length A * 15 +3,tt))).
   Proof.
     extract.
     solverec.
-  Defined.
+  Qed.
 
   Global Instance term_filter: computableTime (@filter X) (fun p pT => (1,fun l _ => (fold_right (fun x res => 14 + res + fst (pT x tt)) 7 l ,tt))).
   Proof using intX.
@@ -40,7 +34,7 @@ Section Fix_X.
     extract.
     solverec.
   Defined.
-
+  (** filter is [[Defined]] as both instances with and without time must use exactly the same term to be used in a compatible way *)
   Global Instance term_filter_notime: computable (@filter X).
   pose (t:= extT (@filter X)). hnf in t. 
     computable using t.
@@ -50,7 +44,7 @@ Section Fix_X.
   Proof.
     extract.
     solverec.
-  Defined.
+  Qed.
 
   Fixpoint inb eqb (x:X) (A: list X) :=
     match A with
@@ -71,7 +65,7 @@ Section Fix_X.
       *constructor. tauto.
       *constructor. tauto.
       *constructor. tauto.
-  Defined.
+  Qed.
 
   Global Instance term_inb: computableTime inb (fun eq eqT => (5,fun x _ => (1,fun l _ =>
                                         (fold_right (fun x' res => callTime2 eqT x' x
@@ -103,13 +97,13 @@ Section Fix_X.
   Proof using X_eqb_spec.
     induction A;[reflexivity|];cbn.
     rewrite IHA. destruct (X_eqb_spec x a); repeat (destruct _; try congruence).
-  Defined.
+  Qed.
 
   Global Instance term_pos_nondec:
     computable pos_nondec.
   Proof.
     extract.
-  Defined.
+  Qed.
 
 End Fix_X.
 
@@ -129,17 +123,17 @@ Defined.
 Instance term_nth_error (X:Type) (Hx : registered X): computable (@nth_error X).
 Proof.
   extract.
-Defined.
+Qed.
 
 Instance term_elAt (X:Type) (Hx : registered X) : computable (@elAt X).
 Proof.
   unfold elAt. exact _.
-Defined.
+Qed.
 
 Instance term_rev (X : Type) (Hx : registered X) : computable (@rev X).
 Proof.
   extract.
-Defined.
+Qed.
 
 Section list_eqb.
 
@@ -177,7 +171,7 @@ Section int.
   Proof.
     extract.
     solverec.                                                                                             
-  Defined.
+  Qed.
 
   Definition list_eqbTime_leq (eqbT: timeComplexity (X -> X -> bool)) (A B:list X) k:
     (forall a b, callTime2 eqbT a b <= k)

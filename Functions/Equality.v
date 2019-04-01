@@ -1,22 +1,7 @@
-Require Export LBool LNat Encoding Nat.
+Require Export LBool LNat LTerm Nat.
 Require Import LTactics.
 
 (** * Extracted Functions *)
-
-(** ** Extracted equality of encoded natural numbers *)
-(*
-Instance term_nat_eqb : computable eqb.
-Proof.
-  internalize auto. 
-Defined.*)
-(*
-Instance term_nat_eq_dec : computable nat_eq_dec.
-Proof.
-  pose (f x y :=to_sumbool (eqb x y)).
-  internalizeWith f. Lsimpl.
-  apply reflect_dec.
-  eapply Nat.eqb_spec.
-Defined.*)
 
 (** ** Extracted equality of encoded terms *)
 
@@ -33,7 +18,6 @@ Proof.
   extract.
 Defined.
 
-
 Lemma term_eqb_spec : forall x y1 : term, reflect (x = y1) (term_eqb x y1).
 Proof with try (constructor;congruence).
   induction x;cbn; destruct y1...
@@ -42,16 +26,3 @@ Proof with try (constructor;congruence).
    destruct (IHx2 y1_2)...
   -destruct (IHx y1)...
 Qed.  
-
-(*
-Instance term_term_eq_dec : computable term_eq_dec.
-Proof.
-  pose (f x y := to_sumbool (term_eqb x y)).
-  internalizeWith f. Lsimpl.
-  apply reflect_dec.
-  revert y0. induction y as [x | s1 H1 s2 H2| s H];intros [y | t1 t2| t];cbn;try constructor;try congruence.
-  -dec;constructor;congruence. 
-  -specialize (H1 t1). specialize (H2 t2). do 2 destruct (term_eqb);simpl in *; constructor;inv H1;inv H2;try congruence.
-  -destruct (H t);constructor;congruence.
-Defined.
-*)

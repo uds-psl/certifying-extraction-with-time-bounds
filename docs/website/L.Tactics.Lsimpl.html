@@ -51,16 +51,14 @@
 
 <br/>
 <span class="comment">(*Lsimpl&nbsp;that&nbsp;uses&nbsp;correctnes&nbsp;lemmas*)</span><br/>
-<span class="id" title="keyword">Ltac</span> <span class="id" title="var">Lsimpl</span> :=<span class="id" title="tactic">intros</span><span class="comment">(*;repeat&nbsp;foldLocalInts*)</span>;<br/>
+<span class="id" title="keyword">Ltac</span> <span class="id" title="var">Lsimpl</span> :=<span class="id" title="tactic">intros</span>;<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">lazymatch</span> <span class="id" title="keyword">goal</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| |- <span class="id" title="var">_</span> <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">&gt;(&lt;=</span></a> <span class="id" title="var">_</span> <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">)</span></a> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Lreduce</span>;<span class="id" title="tactic">try</span> <span class="id" title="var">Lreflexivity</span><br/>
 &nbsp;&nbsp;| |- <span class="id" title="var">_</span> <a class="idref" href="L.L.html#7b668d9a95b49aee3eea4916be2db74f"><span class="id" title="notation">⇓(</span></a><span class="id" title="var">_</span> <a class="idref" href="L.L.html#7b668d9a95b49aee3eea4916be2db74f"><span class="id" title="notation">)</span></a> <span class="id" title="var">_</span> =&gt; <span class="id" title="tactic">repeat</span> <span class="id" title="tactic">progress</span> <span class="id" title="var">Lbeta</span>;<span class="id" title="tactic">try</span> <span class="id" title="var">Lreflexivity</span><br/>
 &nbsp;&nbsp;| |- <span class="id" title="var">_</span> <a class="idref" href="L.L.html#f4fc4a8747dab859d98c41d9179024c1"><span class="id" title="notation">⇓(&lt;=</span></a> <span class="id" title="var">_</span> <a class="idref" href="L.L.html#f4fc4a8747dab859d98c41d9179024c1"><span class="id" title="notation">)</span></a> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Lreduce</span>;<span class="id" title="tactic">try</span> <span class="id" title="var">Lreflexivity</span><br/>
 &nbsp;&nbsp;| |- <span class="id" title="var">_</span> <a class="idref" href="L.L.html#297071ba15f881205bcf0411736e5c53"><span class="id" title="notation">&gt;(</span></a><span class="id" title="var">_</span><a class="idref" href="L.L.html#297071ba15f881205bcf0411736e5c53"><span class="id" title="notation">)</span></a> <span class="id" title="var">_</span> =&gt; <span class="id" title="tactic">repeat</span> <span class="id" title="tactic">progress</span> <span class="id" title="var">Lbeta</span>;<span class="id" title="tactic">try</span> <span class="id" title="var">Lreflexivity</span><br/>
-&nbsp;&nbsp;| |- <span class="id" title="var">_</span> <a class="idref" href="L.L.html#e16b5948c924c8117315a3bcb9b5af70"><span class="id" title="notation">&gt;*</span></a> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Lreduce</span>;<span class="id" title="tactic">try</span> <span class="id" title="var">Lreflexivity</span> <span class="comment">(*&nbsp;test&nbsp;*)</span><br/>
-&nbsp;&nbsp;| |- <a class="idref" href="L.L.html#eval"><span class="id" title="definition">eval</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Lreduce</span>;<span class="id" title="tactic">try</span> <span class="id" title="var">Lreflexivity</span> <span class="comment">(*&nbsp;test&nbsp;*)</span><br/>
-&nbsp;&nbsp;<span class="comment">(*|&nbsp;|-&nbsp;_&nbsp;&gt;*&nbsp;_&nbsp;&nbsp;=&gt;&nbsp;repeat&nbsp;Lsimpl';try&nbsp;reflexivity'<br/>
-&nbsp;&nbsp;|&nbsp;|-&nbsp;eval&nbsp;_&nbsp;_&nbsp;&nbsp;=&gt;&nbsp;repeat&nbsp;Lsimpl';try&nbsp;reflexivity'*)</span><br/>
+&nbsp;&nbsp;| |- <span class="id" title="var">_</span> <a class="idref" href="L.L.html#e16b5948c924c8117315a3bcb9b5af70"><span class="id" title="notation">&gt;*</span></a> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Lreduce</span>;<span class="id" title="tactic">try</span> <span class="id" title="var">Lreflexivity</span><br/>
+&nbsp;&nbsp;| |- <a class="idref" href="L.L.html#eval"><span class="id" title="definition">eval</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Lreduce</span>;<span class="id" title="tactic">try</span> <span class="id" title="var">Lreflexivity</span> <br/>
 &nbsp;&nbsp;| |- <span class="id" title="var">_</span> <a class="idref" href="L.L.html#bec439b36d449155cf4821d64d620d15"><span class="id" title="notation">==</span></a> <span class="id" title="var">_</span>  =&gt; <span class="id" title="tactic">repeat</span> <span class="id" title="var">Lsimpl'</span>;<span class="id" title="tactic">try</span> <span class="id" title="var">reflexivity'</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
@@ -87,9 +85,8 @@
 
 <br/>
 <span class="id" title="keyword">Tactic Notation</span> "redStep" "in" <span class="id" title="var">hyp</span>(<span class="id" title="var">h</span>) "at" <span class="id" title="var">integer</span>(<span class="id" title="var">pos</span>) := <span class="id" title="tactic">rewrite</span> <a class="idref" href="L.L.html#step_Lproc"><span class="id" title="lemma">step_Lproc</span></a> <span class="id" title="tactic">in</span> <span class="id" title="var">h</span> <span class="id" title="tactic">at</span> <span class="id" title="var">pos</span>;[<span class="id" title="tactic">simpl</span> <span class="id" title="tactic">in</span> <span class="id" title="var">h</span>;<span class="id" title="tactic">try</span> <span class="id" title="var">closedRewrite</span> <span class="id" title="tactic">in</span> <span class="id" title="var">h</span>|<span class="id" title="var">Lproc</span>].<br/>
-<span class="comment">(*<br/>
-Tactic&nbsp;Notation&nbsp;"redStep"&nbsp;:=&nbsp;redStep&nbsp;at&nbsp;1.<br/>
-*)</span><br/>
+
+<br/>
 <span class="id" title="keyword">Tactic Notation</span> "redStep" "in" <span class="id" title="var">hyp</span>(<span class="id" title="var">h</span>) := <span class="id" title="var">redStep</span> <span class="id" title="tactic">in</span> <span class="id" title="var">h</span> <span class="id" title="tactic">at</span> 1.<br/>
 
 <br/>
@@ -130,15 +127,6 @@ Tactic&nbsp;Notation&nbsp;"redStep"&nbsp;:=&nbsp;redStep&nbsp;at&nbsp;1.<br/>
 <br/>
 <span class="id" title="keyword">Tactic Notation</span> "recStep" <span class="id" title="keyword">constr</span>(<span class="id" title="var">P</span>) :=<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">intros</span>;<span class="id" title="var">recStep</span> <span class="id" title="var">P</span> <span class="id" title="tactic">at</span> 1.<br/>
-
-<br/>
-<span class="comment">(*<br/>
-Lemma&nbsp;rClosed_closed&nbsp;s:&nbsp;recProc&nbsp;s&nbsp;-&gt;&nbsp;proc&nbsp;s.<br/>
-&nbsp;&nbsp;intros&nbsp;<span class="inlinecode">?</span> <span class="inlinecode">[?</span> <span class="inlinecode">?]</span>.&nbsp;subst.&nbsp;split;&nbsp;auto&nbsp;with&nbsp;LProc.<br/>
-Qed.<br/>
-<br/>
-Hint&nbsp;Resolve&nbsp;rClosed_closed&nbsp;:&nbsp;LProc&nbsp;cbv.<br/>
-&nbsp;*)</span><br/>
 
 <br/>
 <span class="id" title="keyword">Lemma</span> <a name="I_proc"><span class="id" title="lemma">I_proc</span></a> : <a class="idref" href="L.L.html#proc"><span class="id" title="definition">proc</span></a> <a class="idref" href="L.L.html#I"><span class="id" title="definition">I</span></a>.<br/>

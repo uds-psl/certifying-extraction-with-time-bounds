@@ -41,7 +41,6 @@ Proof.
   intros R. recStep mu'. Lsimpl. rewrite R. unfold K.  Lsimpl.
 Qed.
 
-(* TODO: mu' sound*)
 Lemma mu'_sound v n: proc v -> mu' P (ext (n:nat)) == v ->
                      (forall n', n' < n -> P (ext n') == ext false) ->
                      exists n0, n0 >= n /\ P (ext n0) == ext true /\ v == ext n0

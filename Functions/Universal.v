@@ -1,4 +1,4 @@
-Require Import Seval LBool LOptions Equality.
+Require Import Seval LBool LOptions LTactics Nat.
 
 (** * Case Study 1: Universal L-term *)
 
@@ -26,7 +26,6 @@ Instance term_lam : computableTime lam (fun s _ => (1, tt)).
 Proof. extract constructor. solverec. Qed.
 
 (** ** Extracted equality on natural numbers **)
-
 Instance termT_nat_eqb: computableTime Nat.eqb (fun x xT => (5,(fun y yT => ((min x y)*15 + 8,tt)))).
 Proof. extract. solverec. Qed.
 

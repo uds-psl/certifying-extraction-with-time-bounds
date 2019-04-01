@@ -68,7 +68,7 @@
 
 <div class="doc">
 <a name="lab26"></a><h3 class="section">Interactive Demo</h3>
-
+ This file shows the inner working of the tactic that shows the correctness of our extracted terms, <span class="inlinecode">[<span class="id" title="var">cstep</span>]</span> 
 </div>
 <div class="code">
 
@@ -104,7 +104,7 @@ Examples of the tactics that proof the correctness lemmata
 </div>
 
 <div class="doc">
-Comming up with the conditions for the time bound 
+Coming up with the conditions for the time bound 
 </div>
 <div class="code">
 &nbsp;&nbsp;<span class="id" title="keyword">Goal</span> <span class="id" title="keyword">forall</span> <span class="id" title="var">fT</span>, <a class="idref" href="L.Tactics.ComputableTactics.html#ead6f414f9e843f23469479f9eebddea"><span class="id" title="notation">computableTime</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#orb"><span class="id" title="definition">orb</span></a> <a class="idref" href="L.Tactics.ComputableDemo.html#fT"><span class="id" title="variable">fT</span></a>.<br/>
@@ -216,7 +216,7 @@ Finding the Time Bound
 &nbsp;&nbsp;<span class="id" title="keyword">Qed</span>.<br/>
 
 <br/>
-&nbsp;&nbsp;<span class="comment">(*comming&nbsp;up&nbsp;with&nbsp;the&nbsp;condition&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="comment">(*coming&nbsp;up&nbsp;with&nbsp;the&nbsp;condition&nbsp;*)</span><br/>
 
 <br/>
 &nbsp;&nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="termT_map"><span class="id" title="lemma">termT_map</span></a> <span class="id" title="var">A</span> <span class="id" title="var">B</span> (<span class="id" title="var">Rx</span> : <a class="idref" href="L.Tactics.Computable.html#registered"><span class="id" title="class">registered</span></a> <a class="idref" href="L.Tactics.ComputableDemo.html#A"><span class="id" title="variable">A</span></a>)  (<span class="id" title="var">Ry</span>: <a class="idref" href="L.Tactics.Computable.html#registered"><span class="id" title="class">registered</span></a> <a class="idref" href="L.Tactics.ComputableDemo.html#B"><span class="id" title="variable">B</span></a>):<br/>
@@ -229,7 +229,7 @@ Finding the Time Bound
 &nbsp;&nbsp;<span class="id" title="keyword">Abort</span>.<br/>
 
 <br/>
-&nbsp;&nbsp;<span class="comment">(*&nbsp;comming&nbsp;up&nbsp;with&nbsp;the&nbsp;time&nbsp;bound&nbsp;*)</span><br/>
+&nbsp;&nbsp;<span class="comment">(*&nbsp;coming&nbsp;up&nbsp;with&nbsp;the&nbsp;time&nbsp;bound&nbsp;*)</span><br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Lemma</span> <a name="termT_map"><span class="id" title="lemma">termT_map</span></a> <span class="id" title="var">A</span> <span class="id" title="var">B</span> (<span class="id" title="var">Rx</span> : <a class="idref" href="L.Tactics.Computable.html#registered"><span class="id" title="class">registered</span></a> <a class="idref" href="L.Tactics.ComputableDemo.html#A"><span class="id" title="variable">A</span></a>)  (<span class="id" title="var">Ry</span>: <a class="idref" href="L.Tactics.Computable.html#registered"><span class="id" title="class">registered</span></a> <a class="idref" href="L.Tactics.ComputableDemo.html#B"><span class="id" title="variable">B</span></a>):<br/>
@@ -248,22 +248,6 @@ Finding the Time Bound
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="L.Tactics.ComputableDemo.html#demo.PaperExample"><span class="id" title="section">PaperExample</span></a>.<br/>
-
-<br/>
-&nbsp;&nbsp;<span class="comment">(*<br/>
-<span class="comment">(*&nbsp;this&nbsp;is&nbsp;more&nbsp;or&nbsp;lest&nbsp;just&nbsp;a&nbsp;test&nbsp;for&nbsp;internalization&nbsp;automation...&nbsp;*)</span><br/>
-Instance&nbsp;term_option_map&nbsp;X&nbsp;Y&nbsp;(Hy:registered&nbsp;Y)&nbsp;(Hx&nbsp;:&nbsp;registered&nbsp;X):computable&nbsp;(@option_map&nbsp;X&nbsp;Y).<br/>
-Proof.<br/>
-&nbsp;&nbsp;compute'&nbsp;0.&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;computePrettyStep.<br/>
-&nbsp;&nbsp;<br/>
-&nbsp;&nbsp;Unshelve.&nbsp;Focus&nbsp;4.&nbsp;unfold&nbsp;int.&nbsp;cbn.&nbsp;Lsimpl.&nbsp;unfold&nbsp;intApp'.&nbsp;Set&nbsp;Printing&nbsp;Implicit.&nbsp;split.&nbsp;unfold&nbsp;int.&nbsp;cbn.&nbsp;&nbsp;hnf.&nbsp;reflexivity.&nbsp;cbn.&nbsp;Lsimpl.<br/>
-&nbsp;&nbsp;computePrettyStep.<br/>
-&nbsp;&nbsp;computePrettyStep.<br/>
-&nbsp;&nbsp;Unshelve.&nbsp;Focus&nbsp;4.&nbsp;split.&nbsp;reflexivity.&nbsp;Lreflexivity.<br/>
-&nbsp;&nbsp;compute&nbsp;auto.&nbsp;<br/>
-Qed.<br/>
-&nbsp;&nbsp;&nbsp;*)</span><br/>
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Instance</span> <a name="term_nat_eqb"><span class="id" title="instance">term_nat_eqb</span></a> : <a class="idref" href="L.Tactics.Computable.html#computable"><span class="id" title="class">computable</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Arith.PeanoNat.html#Nat.eqb"><span class="id" title="definition">Nat.eqb</span></a>.<br/>

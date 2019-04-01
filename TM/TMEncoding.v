@@ -39,7 +39,7 @@ Section finType_eqb.
 End finType_eqb.
 
 
-
+(** *** Computability of functions with finite, discrete domain *)
 Section Lookup.
   Variable X Y : Type.
   Variable eqb : X -> X -> bool.
@@ -137,23 +137,6 @@ Proof.
   intros. cbn. f_equal. fold (Vector.fold_right (A:=X) (B:=Y)).
   setoid_rewrite IHn. reflexivity.
 Qed.
-
-(* Instance term_vector_map X Y `{registered X} `{registered Y} n (f:X->Y): computable f -> computable (VectorDef.map f (n:=n)). *)
-(* Proof. *)
-(*   intros ?. *)
-  
-(*   internalize_casted_result. *)
-(*   apply computableExt with (x:= fun x => map f (Vector.to_list x)). *)
-(*   2:{ *)
-(*     extract. *)
-(*   } *)
-     
-(*   cbn. intros x.  *)
-(*   clear - x. *)
-(*   induction n. revert x. apply VectorDef.case0. easy. revert IHn. apply Vector.caseS' with (v:=x). *)
-(*   intros. cbn. f_equal. fold (Vector.fold_right (A:=X) (B:=Y)). *)
-(*   setoid_rewrite IHn. reflexivity. *)
-(* Qed. *)
 
 Fixpoint time_map2 {X Y Z} `{registered X} `{registered Y} `{registered Z} (gT : timeComplexity (X->Y->Z)) (l1 :list X) (l2 : list Y) :=
   match l1,l2 with
@@ -270,6 +253,8 @@ Section fix_sig.
     Qed.
 
   End reg_tapes.
+
+  (** *** Encoding configurations *)
 
   Definition mconfigAsPair {B n} (c:mconfig sig B n):= let (x,y) := c in (x,y).
 
@@ -464,7 +449,7 @@ Section loopM.
     solverec.
   Qed.
 
-  (** *** Computability of step-ndexed interpreter *)
+  (** *** Computability of step-indexed interpreter *)
   Global Instance term_loopM :
     let c1 := (haltTime + n*121 + transTime + 76) in
     let c2 := 13 + haltTime in

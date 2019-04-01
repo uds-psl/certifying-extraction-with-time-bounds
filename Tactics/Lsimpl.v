@@ -21,16 +21,14 @@ Ltac Lreduce :=
            
 
 (*Lsimpl that uses correctnes lemmas*)
-Ltac Lsimpl :=intros(*;repeat foldLocalInts*);
+Ltac Lsimpl :=intros;
   lazymatch goal with
   | |- _ >(<= _ ) _ => Lreduce;try Lreflexivity
   | |- _ ⇓(_ ) _ => repeat progress Lbeta;try Lreflexivity
   | |- _ ⇓(<= _ ) _ => Lreduce;try Lreflexivity
   | |- _ >(_) _ => repeat progress Lbeta;try Lreflexivity
-  | |- _ >* _ => Lreduce;try Lreflexivity (* test *)
-  | |- eval _ _ => Lreduce;try Lreflexivity (* test *) 
-  (*| |- _ >* _  => repeat Lsimpl';try reflexivity'
-  | |- eval _ _  => repeat Lsimpl';try reflexivity'*)
+  | |- _ >* _ => Lreduce;try Lreflexivity
+  | |- eval _ _ => Lreduce;try Lreflexivity 
   | |- _ == _  => repeat Lsimpl';try reflexivity'
   end.
 
@@ -54,9 +52,7 @@ Tactic Notation "closedRewrite" "in" hyp(h):=
 Tactic Notation "redStep" "at" integer(pos) := rewrite step_Lproc at pos;[simpl;try closedRewrite|Lproc].
 
 Tactic Notation "redStep" "in" hyp(h) "at" integer(pos) := rewrite step_Lproc in h at pos;[simpl in h;try closedRewrite in h|Lproc].
-(*
-Tactic Notation "redStep" := redStep at 1.
-*)
+
 Tactic Notation "redStep" "in" hyp(h) := redStep in h at 1.
 
 (* register needed lemmas:*)
@@ -92,13 +88,6 @@ Tactic Notation "recStep" constr(P) "at" integer(i):=
 Tactic Notation "recStep" constr(P) :=
   intros;recStep P at 1.
 
-(*
-Lemma rClosed_closed s: recProc s -> proc s.
-  intros [? [? ?]]. subst. split; auto with LProc.
-Qed.
-
-Hint Resolve rClosed_closed : LProc cbv.
- *)
 
 Lemma I_proc : proc I.
   fLproc.

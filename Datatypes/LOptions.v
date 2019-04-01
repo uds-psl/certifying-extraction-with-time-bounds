@@ -15,27 +15,8 @@ Section Fix_X.
   Proof.
     extract constructor.
     solverec.
-  Defined.
-
-  Lemma oenc_correct_some s (v : term) : lambda v -> enc s == ext (@Some X) v -> exists s', s = Some s' /\ v = enc s'.
-  Proof. 
-    intros lam_v H. unfold ext in H;cbn in H. unfold extT in H; cbn in H. redStep in H.
-    apply unique_normal_forms in H;[|Lproc..]. destruct s;simpl in H.
-    -injection H;eauto.
-    -discriminate H. 
   Qed.
-       
 
-
-   (*
-   Lemma none_equiv_some v : proc v -> ~ none == some v.
-   Proof.
-     intros eq. rewrite some_correct. Lrewrite. apply unique_normal_forms in eq;[discriminate|Lproc..].
-     intros H. assert (converges (some v)) by (eexists; split;[rewrite <- H; cbv; now unfold none| auto]). destruct (app_converges H0) as [_ ?]. destruct H1 as [u [H1 lu]]. rewrite H1 in H.
-     symmetry in H. eapply eqTrans with (s := (lam (lam (#1 u)))) in H.
-     eapply eq_lam in H. inv H. symmetry. unfold some. clear H. old_Lsimpl.
-   Qed.
-    *)
 End Fix_X.
 
 Hint Resolve option_enc_correct : Lrewrite.
@@ -68,7 +49,7 @@ Section int.
   Global Instance term_option_eqb : computableTime (@option_eqb X) (fun eqb eqbT => (1, fun a _ => (1,fun b _ => (match a,b with Some a, Some b => callTime2 eqbT a b + 10 | _,_ => 8 end,tt)))).
   Proof.
     extract. solverec.
-  Defined.
+  Qed.
 
 End int.
 

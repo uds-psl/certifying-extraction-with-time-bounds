@@ -40,27 +40,6 @@ Lemma Lrewrite_equiv_helper s s' t t' :
 Proof.
   intros -> ->. tauto. 
 Qed.
-(*
-Lemma intT_helper X (f:X) `{registered X} `{@computableTime _ _ f}:
-  intT f >(<=0) enc f.
-Proof.
-  now rewrite intT_is_enc.
-Qed.
-*)
-(*
-Lemma int_helper X (f:X) `{registered X} `{@computable _ _ f}:
-  int f >(<=0) enc f.
-Proof.
-  now rewrite int_is_enc.
-Qed.
-*)
-(*
-Lemma intT_star_helper X (f:X) `{TT X} `{@computableTime _ _ f}:
-  intT f >* int f.
-Proof.
-  now rewrite intT_is_int.
-Qed.
-*)
 
 
 Ltac find_Lrewrite_lemma :=
@@ -72,10 +51,7 @@ Hint Extern 0 (proc _) => solve [Lproc] : Lrewrite.
 Hint Extern 0 (lambda _) => solve [Lproc] : Lrewrite.
 Hint Extern 0 (closed _) => solve [Lproc] : Lrewrite.
 
-(*
-Hint Extern 0 (@int _ (@TyB _ ?R) _ _ >(<= _ ) _)  => exact (@int_helper _ _ R _): Lrewrite.*)
-(*Hint Extern 0 (@intT _ (@TyB _ ?R) _ _ >(<= _ ) _)  => exact (@intT_helper _ _ R _) : Lrewrite.
-Hint Extern 0 (@intT _ _ ?f _ >* _)  => exact (@intT_star_helper _ f _ _): Lrewrite.*)
+
 Hint Extern 0 (_ >(<= _ ) _) => eapply pow_redLe_subrelation : Lrewrite.
 Hint Extern 0 (_ >* _) => eapply redLe_star_subrelation : Lrewrite.
 Hint Extern 0 (_ >* _) => eapply eval_star_subrelation : Lrewrite.
@@ -146,13 +122,10 @@ Ltac LrewriteTime_solveGoals :=
   | |- app (@extT _ (_ ~> _ ) _ _ ?ints) (@enc _ ?reg ?x) >(<= ?k ) ?v =>
     change (app (@extT _ _ _ _ ints) (@extT _ _ _ _ (reg_is_extT reg x)) >(<= k) v);LrewriteTime_solveGoals
 
-  (*| xInts : computes ?ty ?x ?xInt _
-    |- ?R ?xInt ?res => change (R (@ext _ _ x (Build_computable xInts)) res)
-                      ;reflexivity*)
-  (* Correctness Lemmatas: *) 
+
 
 (* do nothing to debug: use idtac here!*)
-  | |- _ >(<= _ ) _ => Lreflexivity (* TO DEBUG: use idtac here*)
+  | |- _ >(<= _ ) _ => Lreflexivity 
   | |- _ >* _ => reflexivity (* TO DEBUG: use idtac here*)
   end.
 
@@ -173,29 +146,6 @@ Ltac LrewriteTime :=
   | |- _ => idtac
   end.
 
-(* Legacy: *)
-(*
-Ltac Lrewrite_old'' :=(eassumption;try reflexivity;try Lproc) || (try trivial with Lrewrite nocore;
-    match goal with
-    (*| |- @ext _ (TyB _) _ _ >* _ => rewrite int_is_enc;reflexivity
-    | |- app (int _) (enc _) >* _ => apply intAppEnc*)
-    | |- app (@ext _ (_ ~> _) _ _) (int _) >* _ => apply intApp
-    (* for correctness-lemma premisses:*)
-    | |- _ == _ => apply star_equiv
-    | H:_|- _ >* _ => eapply H;try reflexivity;try Lproc
-    | |- app ?s ?t >* _ => apply star_step_app_proper
-    | |- _ >* _ => reflexivity
-  end).
-
-Ltac Lrewrite_old' :=
-  match goal with (*
-    | |- ?s == _ => is_evar s;fail 1
-    | |- ?s >* _ => is_evar s;fail 1*) 
-    | _ => repeat progress (etransitivity;[repeat Lrewrite_old''|])
-  end.
-
-Ltac Lrewrite_old := repeat autounfold with test in *;(Lrewrite_old');try (symmetry;(Lrewrite_old');symmetry).
-*)
 Ltac Lrewrite :=
   lazymatch goal with
   | |- _ >(<= _) _ => LrewriteTime

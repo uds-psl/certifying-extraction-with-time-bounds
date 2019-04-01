@@ -26,7 +26,7 @@
     <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
     <div id="main">
 <div class="code">
-<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="L.Datatypes.LBool.html#"><span class="id" title="library">LBool</span></a> <a class="idref" href="L.Datatypes.LNat.html#"><span class="id" title="library">LNat</span></a> <a class="idref" href="L.Functions.Encoding.html#"><span class="id" title="library">Encoding</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Nat.html#"><span class="id" title="library">Nat</span></a>.<br/>
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="L.Datatypes.LBool.html#"><span class="id" title="library">LBool</span></a> <a class="idref" href="L.Datatypes.LNat.html#"><span class="id" title="library">LNat</span></a> <a class="idref" href="L.Datatypes.LTerm.html#"><span class="id" title="library">LTerm</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Nat.html#"><span class="id" title="library">Nat</span></a>.<br/>
 <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="L.Tactics.LTactics.html#"><span class="id" title="library">LTactics</span></a>.<br/>
 
 <br/>
@@ -37,29 +37,7 @@
 
 <div class="paragraph"> </div>
 
-<a name="lab36"></a><h2 class="section">Extracted equality of encoded natural numbers</h2>
-
-</div>
-<div class="code">
-<span class="comment">(*<br/>
-Instance&nbsp;term_nat_eqb&nbsp;:&nbsp;computable&nbsp;eqb.<br/>
-Proof.<br/>
-&nbsp;&nbsp;internalize&nbsp;auto.&nbsp;<br/>
-Defined.*)</span><br/>
-<span class="comment">(*<br/>
-Instance&nbsp;term_nat_eq_dec&nbsp;:&nbsp;computable&nbsp;nat_eq_dec.<br/>
-Proof.<br/>
-&nbsp;&nbsp;pose&nbsp;(f&nbsp;x&nbsp;y&nbsp;:=to_sumbool&nbsp;(eqb&nbsp;x&nbsp;y)).<br/>
-&nbsp;&nbsp;internalizeWith&nbsp;f.&nbsp;Lsimpl.<br/>
-&nbsp;&nbsp;apply&nbsp;reflect_dec.<br/>
-&nbsp;&nbsp;eapply&nbsp;Nat.eqb_spec.<br/>
-Defined.*)</span><br/>
-
-<br/>
-</div>
-
-<div class="doc">
-<a name="lab37"></a><h2 class="section">Extracted equality of encoded terms</h2>
+<a name="lab36"></a><h2 class="section">Extracted equality of encoded terms</h2>
 
 </div>
 <div class="code">
@@ -88,20 +66,6 @@ Defined.*)</span><br/>
 &nbsp;&nbsp;&nbsp;<span class="id" title="tactic">destruct</span> (<span class="id" title="var">IHx2</span> <span class="id" title="var">y1_2</span>)...<br/>
 &nbsp;&nbsp;-<span class="id" title="tactic">destruct</span> (<span class="id" title="var">IHx</span> <span class="id" title="var">y1</span>)...<br/>
 <span class="id" title="keyword">Qed</span>.<br/>
-
-<br/>
-<span class="comment">(*<br/>
-Instance&nbsp;term_term_eq_dec&nbsp;:&nbsp;computable&nbsp;term_eq_dec.<br/>
-Proof.<br/>
-&nbsp;&nbsp;pose&nbsp;(f&nbsp;x&nbsp;y&nbsp;:=&nbsp;to_sumbool&nbsp;(term_eqb&nbsp;x&nbsp;y)).<br/>
-&nbsp;&nbsp;internalizeWith&nbsp;f.&nbsp;Lsimpl.<br/>
-&nbsp;&nbsp;apply&nbsp;reflect_dec.<br/>
-&nbsp;&nbsp;revert&nbsp;y0.&nbsp;induction&nbsp;y&nbsp;as&nbsp;<span class="inlinecode"><span class="id" title="var">x</span></span> <span class="inlinecode">|</span> <span class="inlinecode"><span class="id" title="var">s1</span></span> <span class="inlinecode"><span class="id" title="var">H1</span></span> <span class="inlinecode"><span class="id" title="var">s2</span></span> <span class="inlinecode"><span class="id" title="var">H2</span>|</span> <span class="inlinecode"><span class="id" title="var">s</span></span> <span class="inlinecode"><span class="id" title="var">H</span></span>;intros&nbsp;<span class="inlinecode"><span class="id" title="var">y</span></span> <span class="inlinecode">|</span> <span class="inlinecode"><span class="id" title="var">t1</span></span> <span class="inlinecode"><span class="id" title="var">t2</span>|</span> <span class="inlinecode"><span class="id" title="var">t</span></span>;cbn;try&nbsp;constructor;try&nbsp;congruence.<br/>
-&nbsp;&nbsp;-dec;constructor;congruence.&nbsp;<br/>
-&nbsp;&nbsp;-specialize&nbsp;(H1&nbsp;t1).&nbsp;specialize&nbsp;(H2&nbsp;t2).&nbsp;do&nbsp;2&nbsp;destruct&nbsp;(term_eqb);simpl&nbsp;in&nbsp;*;&nbsp;constructor;inv&nbsp;H1;inv&nbsp;H2;try&nbsp;congruence.<br/>
-&nbsp;&nbsp;-destruct&nbsp;(H&nbsp;t);constructor;congruence.<br/>
-Defined.<br/>
-*)</span><br/>
 </div>
 </div>
 <div id="footer">

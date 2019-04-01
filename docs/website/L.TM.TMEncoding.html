@@ -36,11 +36,11 @@
 </div>
 
 <div class="doc">
-<a name="lab54"></a><h2 class="section">Extraction of Turing Machine interpreter</h2>
+<a name="lab46"></a><h2 class="section">Extraction of Turing Machine interpreter</h2>
 
 <div class="paragraph"> </div>
 
-<a name="lab55"></a><h3 class="section">Encoding finite types</h3>
+<a name="lab47"></a><h3 class="section">Encoding finite types</h3>
 
 </div>
 <div class="code">
@@ -82,6 +82,13 @@
 <span class="id" title="keyword">End</span> <a class="idref" href="L.TM.TMEncoding.html#finType_eqb"><span class="id" title="section">finType_eqb</span></a>.<br/>
 
 <br/>
+</div>
+
+<div class="doc">
+<a name="lab48"></a><h3 class="section">Computability of functions with finite, discrete domain</h3>
+
+</div>
+<div class="code">
 <span class="id" title="keyword">Section</span> <a name="Lookup"><span class="id" title="section">Lookup</span></a>.<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Variable</span> <a name="Lookup.X"><span class="id" title="variable">X</span></a> <a name="Lookup.Y"><span class="id" title="variable">Y</span></a> : <span class="id" title="keyword">Type</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Variable</span> <a name="Lookup.eqb"><span class="id" title="variable">eqb</span></a> : <a class="idref" href="L.TM.TMEncoding.html#Lookup.X"><span class="id" title="variable">X</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="L.TM.TMEncoding.html#Lookup.X"><span class="id" title="variable">X</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#bool"><span class="id" title="inductive">bool</span></a>.<br/>
@@ -156,7 +163,7 @@
 </div>
 
 <div class="doc">
-<a name="lab56"></a><h3 class="section">Encoding vectors</h3>
+<a name="lab49"></a><h3 class="section">Encoding vectors</h3>
 
 </div>
 <div class="code">
@@ -198,26 +205,6 @@
 &nbsp;&nbsp;<span class="id" title="tactic">intros</span>. <span class="id" title="var">cbn</span>. <span class="id" title="tactic">f_equal</span>. <span class="id" title="tactic">fold</span> (<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Vectors.Vector.html#fold_right"><span class="id" title="definition">Vector.fold_right</span></a> (<span class="id" title="var">A</span>:=<span class="id" title="var">X</span>) (<span class="id" title="var">B</span>:=<span class="id" title="var">Y</span>)).<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">setoid_rewrite</span> <span class="id" title="var">IHn</span>. <span class="id" title="tactic">reflexivity</span>.<br/>
 <span class="id" title="keyword">Qed</span>.<br/>
-
-<br/>
-<span class="comment">(*&nbsp;Instance&nbsp;term_vector_map&nbsp;X&nbsp;Y&nbsp;`{registered&nbsp;X}&nbsp;`{registered&nbsp;Y}&nbsp;n&nbsp;(f:X-&gt;Y):&nbsp;computable&nbsp;f&nbsp;-&gt;&nbsp;computable&nbsp;(VectorDef.map&nbsp;f&nbsp;(n:=n)).&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;Proof.&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;intros&nbsp;?.&nbsp;*)</span><br/>
-
-<br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;internalize_casted_result.&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;apply&nbsp;computableExt&nbsp;with&nbsp;(x:=&nbsp;fun&nbsp;x&nbsp;=&gt;&nbsp;map&nbsp;f&nbsp;(Vector.to_list&nbsp;x)).&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;2:{&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extract.&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;}&nbsp;*)</span><br/>
-
-<br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;cbn.&nbsp;intros&nbsp;x.&nbsp;&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;clear&nbsp;-&nbsp;x.&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;induction&nbsp;n.&nbsp;revert&nbsp;x.&nbsp;apply&nbsp;VectorDef.case0.&nbsp;easy.&nbsp;revert&nbsp;IHn.&nbsp;apply&nbsp;Vector.caseS'&nbsp;with&nbsp;(v:=x).&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;intros.&nbsp;cbn.&nbsp;f_equal.&nbsp;fold&nbsp;(Vector.fold_right&nbsp;(A:=X)&nbsp;(B:=Y)).&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;setoid_rewrite&nbsp;IHn.&nbsp;reflexivity.&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;Qed.&nbsp;*)</span><br/>
 
 <br/>
 <span class="id" title="keyword">Fixpoint</span> <a name="time_map2"><span class="id" title="definition">time_map2</span></a> {<span class="id" title="var">X</span> <span class="id" title="var">Y</span> <span class="id" title="var">Z</span>} `{<a class="idref" href="L.Tactics.Computable.html#registered"><span class="id" title="class">registered</span></a> <a class="idref" href="L.TM.TMEncoding.html#X"><span class="id" title="variable">X</span></a>} `{<a class="idref" href="L.Tactics.Computable.html#registered"><span class="id" title="class">registered</span></a> <a class="idref" href="L.TM.TMEncoding.html#Y"><span class="id" title="variable">Y</span></a>} `{<a class="idref" href="L.Tactics.Computable.html#registered"><span class="id" title="class">registered</span></a> <a class="idref" href="L.TM.TMEncoding.html#Z"><span class="id" title="variable">Z</span></a>} (<span class="id" title="var">gT</span> : <a class="idref" href="L.Tactics.ComputableTime.html#timeComplexity"><span class="id" title="definition">timeComplexity</span></a> (<a class="idref" href="L.TM.TMEncoding.html#X"><span class="id" title="variable">X</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">-&gt;</span></a><a class="idref" href="L.TM.TMEncoding.html#Y"><span class="id" title="variable">Y</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">-&gt;</span></a><a class="idref" href="L.TM.TMEncoding.html#Z"><span class="id" title="variable">Z</span></a>)) (<span class="id" title="var">l1</span> :<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="L.TM.TMEncoding.html#X"><span class="id" title="variable">X</span></a>) (<span class="id" title="var">l2</span> : <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#list"><span class="id" title="inductive">list</span></a> <a class="idref" href="L.TM.TMEncoding.html#Y"><span class="id" title="variable">Y</span></a>) :=<br/>
@@ -277,7 +264,7 @@
 </div>
 
 <div class="doc">
-<a name="lab57"></a><h3 class="section">Encoding tapes</h3>
+<a name="lab50"></a><h3 class="section">Encoding tapes</h3>
 
 </div>
 <div class="code">
@@ -360,6 +347,15 @@
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">End</span> <a class="idref" href="L.TM.TMEncoding.html#fix_sig.reg_tapes"><span class="id" title="section">reg_tapes</span></a>.<br/>
+
+<br/>
+</div>
+
+<div class="doc">
+<a name="lab51"></a><h3 class="section">Encoding configurations</h3>
+
+</div>
+<div class="code">
 
 <br/>
 &nbsp;&nbsp;<span class="id" title="keyword">Definition</span> <a name="mconfigAsPair"><span class="id" title="definition">mconfigAsPair</span></a> {<span class="id" title="var">B</span> <span class="id" title="var">n</span>} (<span class="id" title="var">c</span>:<a class="idref" href="L.TM.TM.html#mconfig"><span class="id" title="record">mconfig</span></a> <a class="idref" href="L.TM.TMEncoding.html#fix_sig.sig"><span class="id" title="variable">sig</span></a> <a class="idref" href="L.TM.TMEncoding.html#B"><span class="id" title="variable">B</span></a> <a class="idref" href="L.TM.TMEncoding.html#n"><span class="id" title="variable">n</span></a>):= <span class="id" title="keyword">let</span> (<span class="id" title="var">x</span>,<span class="id" title="var">y</span>) := <a class="idref" href="L.TM.TMEncoding.html#c"><span class="id" title="variable">c</span></a> <span class="id" title="tactic">in</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">(</span></a><a class="idref" href="L.TM.TMEncoding.html#x"><span class="id" title="variable">x</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">,</span></a><a class="idref" href="L.TM.TMEncoding.html#y"><span class="id" title="variable">y</span></a><a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#44400027531d4bc3f586a1997dc874c0"><span class="id" title="notation">)</span></a>.<br/>
@@ -477,7 +473,7 @@
 </div>
 
 <div class="doc">
-<a name="lab58"></a><h3 class="section">Computability of transition relation</h3>
+<a name="lab52"></a><h3 class="section">Computability of transition relation</h3>
 
 </div>
 <div class="code">
@@ -595,7 +591,7 @@
 </div>
 
 <div class="doc">
-<a name="lab59"></a><h3 class="section">Computability of step-ndexed interpreter</h3>
+<a name="lab53"></a><h3 class="section">Computability of step-indexed interpreter</h3>
 
 </div>
 <div class="code">

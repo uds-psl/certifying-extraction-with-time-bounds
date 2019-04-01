@@ -13,7 +13,6 @@ Inductive term : Type :=
 | lam (s : term).
 
 Notation "'#' v" := (var v) (at level 1).
-(* Notation "(λ  s )" := (lam s) (right associativity, at level 0).  *)
 
 Instance term_eq_dec : eq_dec term.
 Proof.
@@ -36,12 +35,6 @@ Fixpoint TH n s :=
   | hter t => t
   end.
 
-(* Fixpoint H L s := *)
-(*   match s with *)
-(*   | var n => hv (nth n L 0) *)
-(*   | app s t => ha (H L s) (H L t) *)
-(*   | lam s => hl (fun x => H (x :: L) s) *)
-(*   end. *)
 
 Definition convert:=TH 0.
 Coercion convert : hoas >-> term.
@@ -433,12 +426,6 @@ Proof.
   cbv. intros ? ? H. apply star_equiv, step_star. assumption.
 Qed.
 
-(*
-Lemma equiv_lambda' s t : s == (lam t) -> s >* (lam t).
-Proof.
-  intros H. destruct (church_rosser H) as [u [A B]]; repeat inv_step; eassumption.
-Qed.*)
-
 Lemma equiv_lambda s t : lambda t -> s == t -> s >* t.
 Proof.
   intros H eq. destruct (church_rosser eq) as [u [A B]]. inv B. assumption. inv H. inv H0.
@@ -481,18 +468,6 @@ Instance converges_proper :
 Proof.
   intros s t H. now eapply converges_equiv.
 Qed.
-(*
-Lemma eq_lam s t : lambda s -> lambda t -> lam s == lam t <-> s = t.
-Proof.
-  split.
-  - intros H. eapply equiv_lambda in H; repeat inv_step; reflexivity.
-  - intros []. reflexivity.
-Qed.  
-
-Lemma unique_normal_forms' (s t t' : term) : s == lam t -> s == lam t' -> lam t = lam t'.
-Proof.
-  intros Ht Ht'. rewrite Ht in Ht'. eapply eq_lam in Ht'. congruence.
-Qed.*)
 
 Lemma unique_normal_forms (s t : term) : lambda s -> lambda t ->  s == t -> s = t.
 Proof.

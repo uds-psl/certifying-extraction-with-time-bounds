@@ -26,7 +26,7 @@
     <div id="content" tabindex="-1" onblur="document.getElementById('content').focus()">
     <div id="main">
 <div class="code">
-<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="L.L.html#"><span class="id" title="library">L</span></a> <a class="idref" href="L.Datatypes.LNat.html#"><span class="id" title="library">LNat</span></a> <a class="idref" href="L.Datatypes.LBool.html#"><span class="id" title="library">LBool</span></a> <a class="idref" href="L.Functions.Encoding.html#"><span class="id" title="library">Encoding</span></a> <a class="idref" href="L.Computability.Seval.html#"><span class="id" title="library">Seval</span></a>.<br/>
+<span class="id" title="keyword">Require</span> <span class="id" title="keyword">Export</span> <a class="idref" href="L.L.html#"><span class="id" title="library">L</span></a> <a class="idref" href="L.Datatypes.LNat.html#"><span class="id" title="library">LNat</span></a> <a class="idref" href="L.Datatypes.LBool.html#"><span class="id" title="library">LBool</span></a> <a class="idref" href="L.Computability.Seval.html#"><span class="id" title="library">Seval</span></a>.<br/>
 <span class="id" title="keyword">Require</span> <span class="id" title="keyword">Import</span> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Logic.ConstructiveEpsilon.html#"><span class="id" title="library">Coq.Logic.ConstructiveEpsilon</span></a>.<br/>
 
 <br/>
@@ -69,22 +69,6 @@
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">assert</span> (<a class="idref" href="L.L.html#lambda"><span class="id" title="definition">lambda</span></a> <span class="id" title="var">t</span>) <span class="id" title="tactic">by</span> <span class="id" title="var">now</span> <span class="id" title="tactic">apply</span> <a class="idref" href="L.Computability.Seval.html#eva_lam"><span class="id" title="lemma">eva_lam</span></a> <span class="id" title="tactic">in</span> <span class="id" title="var">eq</span>. <span class="id" title="tactic">apply</span> <a class="idref" href="L.Computability.Seval.html#eva_equiv"><span class="id" title="lemma">eva_equiv</span></a> <span class="id" title="tactic">in</span> <span class="id" title="var">eq</span>. <span class="id" title="tactic">rewrite</span> <span class="id" title="var">H</span> <span class="id" title="tactic">in</span> <span class="id" title="var">eq</span>. <span class="id" title="tactic">apply</span> <a class="idref" href="L.L.html#unique_normal_forms"><span class="id" title="lemma">unique_normal_forms</span></a> <span class="id" title="tactic">in</span> <span class="id" title="var">eq</span>;[|<span class="id" title="var">Lproc</span>..]. <span class="id" title="tactic">congruence</span>.<br/>
 &nbsp;&nbsp;&nbsp;+<span class="id" title="tactic">right</span>. <span class="id" title="tactic">intros</span> [<span class="id" title="var">y</span> <span class="id" title="var">eq'</span>]. <span class="id" title="tactic">congruence</span>.<br/>
 <span class="id" title="keyword">Qed</span>.<br/>
-<span class="comment">(*<br/>
-Definition&nbsp;fromLFun&nbsp;Y&nbsp;(Ry:registered&nbsp;Y)&nbsp;(u:term)&nbsp;(unenc:&nbsp;term&nbsp;-&gt;&nbsp;Y)<br/>
-&nbsp;&nbsp;{unenc_correct&nbsp;:&nbsp;forall&nbsp;x&nbsp;(y:Y),&nbsp;enc&nbsp;y&nbsp;=&nbsp;x&nbsp;-&gt;&nbsp;y&nbsp;=&nbsp;unenc&nbsp;x}<br/>
-&nbsp;&nbsp;{total&nbsp;:&nbsp;exists&nbsp;y:Y,&nbsp;u&nbsp;==&nbsp;enc&nbsp;y}&nbsp;:&nbsp;Y.<br/>
-Proof.<br/>
-&nbsp;&nbsp;intros.&nbsp;eapply&nbsp;proj1_sig.&nbsp;eapply&nbsp;lcomp_comp;eassumption.<br/>
-Defined.<br/>
-<br/>
-Arguments&nbsp;fromLFun&nbsp;{_}&nbsp;{_}&nbsp;_&nbsp;{_}&nbsp;_&nbsp;_.<br/>
-<br/>
-Instance&nbsp;term_fromLFun&nbsp;Y&nbsp;(Ry:registered&nbsp;Y)&nbsp;(u:term)&nbsp;(g:&nbsp;term&nbsp;-&gt;&nbsp;Y)<br/>
-&nbsp;&nbsp;(unenc_correct&nbsp;:&nbsp;forall&nbsp;x&nbsp;(y:Y),&nbsp;enc&nbsp;y&nbsp;=&nbsp;x&nbsp;-&gt;&nbsp;y&nbsp;=&nbsp;g&nbsp;x)<br/>
-&nbsp;&nbsp;(total&nbsp;:&nbsp;exists&nbsp;y:Y,&nbsp;u&nbsp;==&nbsp;enc&nbsp;y)&nbsp;:&nbsp;computable&nbsp;(fromLFun&nbsp;u&nbsp;unenc_correct&nbsp;total).<br/>
-Proof.<br/>
-&nbsp;&nbsp;eexists.&nbsp;reflexivity.<br/>
-Defined.&nbsp;*)</span><br/>
 
 <br/>
 <span class="id" title="keyword">Definition</span> <a name="bool_enc_inv"><span class="id" title="definition">bool_enc_inv</span></a> <span class="id" title="var">b</span>:=<br/>
@@ -103,17 +87,6 @@ Defined.&nbsp;*)</span><br/>
 <span class="id" title="var">Arguments</span> <a class="idref" href="L.Computability.Computability.html#lcomp_comp"><span class="id" title="lemma">lcomp_comp</span></a> <span class="id" title="var">_</span>{<span class="id" title="var">_</span>} <span class="id" title="var">_</span> {<span class="id" title="var">_</span>} <span class="id" title="var">_</span> <span class="id" title="var">_</span>.<br/>
 
 <br/>
-<span class="comment">(*<br/>
-Lemma&nbsp;ldec_dec&nbsp;P&nbsp;u:&nbsp;decides&nbsp;u&nbsp;P&nbsp;-&gt;&nbsp;forall&nbsp;s,&nbsp;dec(P&nbsp;s).<br/>
-Proof.<br/>
-&nbsp;&nbsp;intros&nbsp;H&nbsp;s.&nbsp;specialize&nbsp;(H&nbsp;s).&nbsp;<br/>
-&nbsp;&nbsp;assert&nbsp;(exists&nbsp;(b:bool),&nbsp;u&nbsp;(enc&nbsp;s)&nbsp;==&nbsp;enc&nbsp;b).&nbsp;destruct&nbsp;H&nbsp;as&nbsp;<span class="inlinecode">?</span> <span class="inlinecode">[<span class="id" title="var">H'</span></span> <span class="inlinecode"><span class="id" title="var">_</span>]</span>.&nbsp;exists&nbsp;x.&nbsp;assumption.<br/>
-&nbsp;&nbsp;eapply&nbsp;lcomp_comp&nbsp;in&nbsp;H0.&nbsp;destruct&nbsp;H0&nbsp;as&nbsp;<span class="inlinecode">[|]</span> <span class="inlinecode"><span class="id" title="var">H0</span></span>.<br/>
-&nbsp;&nbsp;-left.&nbsp;destruct&nbsp;H&nbsp;as&nbsp;<span class="inlinecode"><span class="id" title="var">b</span></span> <span class="inlinecode">[<span class="id" title="var">eq</span></span> <span class="inlinecode"><span class="id" title="var">R</span>]</span>.&nbsp;rewrite&nbsp;eq&nbsp;in&nbsp;H0.&nbsp;apply&nbsp;enc_extinj&nbsp;in&nbsp;H0.&nbsp;now&nbsp;subst.<br/>
-&nbsp;&nbsp;-right.&nbsp;destruct&nbsp;H&nbsp;as&nbsp;<span class="inlinecode"><span class="id" title="var">b</span></span> <span class="inlinecode">[<span class="id" title="var">eq</span></span> <span class="inlinecode"><span class="id" title="var">R</span>]</span>.&nbsp;rewrite&nbsp;eq&nbsp;in&nbsp;H0.&nbsp;apply&nbsp;enc_extinj&nbsp;in&nbsp;H0.&nbsp;now&nbsp;subst.<br/>
-&nbsp;&nbsp;-exact&nbsp;bool_enc_inv_correct.<br/>
-Qed.<br/>
-*)</span><br/>
 </div>
 </div>
 <div id="footer">

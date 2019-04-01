@@ -27,6 +27,7 @@ Local Lemma Ack_pos n m : 0 < ackermann n m.
   all:eauto.
 Qed.
 
+(** Demonstration that we can generate recurence equations for Ackermann. *)
 Lemma termT_ackermann :
   computableTime ackermann
                  (fun x _ =>

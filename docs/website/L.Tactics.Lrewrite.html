@@ -81,27 +81,6 @@
 <span class="id" title="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">intros</span> -&gt; -&gt;. <span class="id" title="tactic">tauto</span>.<br/>
 <span class="id" title="keyword">Qed</span>.<br/>
-<span class="comment">(*<br/>
-Lemma&nbsp;intT_helper&nbsp;X&nbsp;(f:X)&nbsp;`{registered&nbsp;X}&nbsp;`{@computableTime&nbsp;_&nbsp;_&nbsp;f}:<br/>
-&nbsp;&nbsp;intT&nbsp;f&nbsp;&gt;(&lt;=0)&nbsp;enc&nbsp;f.<br/>
-Proof.<br/>
-&nbsp;&nbsp;now&nbsp;rewrite&nbsp;intT_is_enc.<br/>
-Qed.<br/>
-*)</span><br/>
-<span class="comment">(*<br/>
-Lemma&nbsp;int_helper&nbsp;X&nbsp;(f:X)&nbsp;`{registered&nbsp;X}&nbsp;`{@computable&nbsp;_&nbsp;_&nbsp;f}:<br/>
-&nbsp;&nbsp;int&nbsp;f&nbsp;&gt;(&lt;=0)&nbsp;enc&nbsp;f.<br/>
-Proof.<br/>
-&nbsp;&nbsp;now&nbsp;rewrite&nbsp;int_is_enc.<br/>
-Qed.<br/>
-*)</span><br/>
-<span class="comment">(*<br/>
-Lemma&nbsp;intT_star_helper&nbsp;X&nbsp;(f:X)&nbsp;`{TT&nbsp;X}&nbsp;`{@computableTime&nbsp;_&nbsp;_&nbsp;f}:<br/>
-&nbsp;&nbsp;intT&nbsp;f&nbsp;&gt;*&nbsp;int&nbsp;f.<br/>
-Proof.<br/>
-&nbsp;&nbsp;now&nbsp;rewrite&nbsp;intT_is_int.<br/>
-Qed.<br/>
-*)</span><br/>
 
 <br/>
 <span class="id" title="keyword">Ltac</span> <span class="id" title="var">find_Lrewrite_lemma</span> :=<br/>
@@ -115,10 +94,6 @@ Qed.<br/>
 <span class="id" title="keyword">Hint Extern</span> 0 (<a class="idref" href="L.L.html#closed"><span class="id" title="definition">closed</span></a> <span class="id" title="var">_</span>) =&gt; <span class="id" title="tactic">solve</span> [<span class="id" title="var">Lproc</span>] : <span class="id" title="var">Lrewrite</span>.<br/>
 
 <br/>
-<span class="comment">(*<br/>
-Hint&nbsp;Extern&nbsp;0&nbsp;(@int&nbsp;_&nbsp;(@TyB&nbsp;_&nbsp;?R)&nbsp;_&nbsp;_&nbsp;&gt;(&lt;=&nbsp;_&nbsp;)&nbsp;_)&nbsp;&nbsp;=&gt;&nbsp;exact&nbsp;(@int_helper&nbsp;_&nbsp;_&nbsp;R&nbsp;_):&nbsp;Lrewrite.*)</span><br/>
-<span class="comment">(*Hint&nbsp;Extern&nbsp;0&nbsp;(@intT&nbsp;_&nbsp;(@TyB&nbsp;_&nbsp;?R)&nbsp;_&nbsp;_&nbsp;&gt;(&lt;=&nbsp;_&nbsp;)&nbsp;_)&nbsp;&nbsp;=&gt;&nbsp;exact&nbsp;(@intT_helper&nbsp;_&nbsp;_&nbsp;R&nbsp;_)&nbsp;:&nbsp;Lrewrite.<br/>
-Hint&nbsp;Extern&nbsp;0&nbsp;(@intT&nbsp;_&nbsp;_&nbsp;?f&nbsp;_&nbsp;&gt;*&nbsp;_)&nbsp;&nbsp;=&gt;&nbsp;exact&nbsp;(@intT_star_helper&nbsp;_&nbsp;f&nbsp;_&nbsp;_):&nbsp;Lrewrite.*)</span><br/>
 <span class="id" title="keyword">Hint Extern</span> 0 (<span class="id" title="var">_</span> <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">&gt;(&lt;=</span></a> <span class="id" title="var">_</span> <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">)</span></a> <span class="id" title="var">_</span>) =&gt; <span class="id" title="tactic">eapply</span> <a class="idref" href="L.L.html#pow_redLe_subrelation"><span class="id" title="instance">pow_redLe_subrelation</span></a> : <span class="id" title="var">Lrewrite</span>.<br/>
 <span class="id" title="keyword">Hint Extern</span> 0 (<span class="id" title="var">_</span> <a class="idref" href="L.L.html#e16b5948c924c8117315a3bcb9b5af70"><span class="id" title="notation">&gt;*</span></a> <span class="id" title="var">_</span>) =&gt; <span class="id" title="tactic">eapply</span> <a class="idref" href="L.L.html#redLe_star_subrelation"><span class="id" title="instance">redLe_star_subrelation</span></a> : <span class="id" title="var">Lrewrite</span>.<br/>
 <span class="id" title="keyword">Hint Extern</span> 0 (<span class="id" title="var">_</span> <a class="idref" href="L.L.html#e16b5948c924c8117315a3bcb9b5af70"><span class="id" title="notation">&gt;*</span></a> <span class="id" title="var">_</span>) =&gt; <span class="id" title="tactic">eapply</span> <a class="idref" href="L.L.html#eval_star_subrelation"><span class="id" title="instance">eval_star_subrelation</span></a> : <span class="id" title="var">Lrewrite</span>.<br/>
@@ -193,13 +168,10 @@ Hint&nbsp;Extern&nbsp;0&nbsp;(@intT&nbsp;_&nbsp;_&nbsp;?f&nbsp;_&nbsp;&gt;*&nbsp
 &nbsp;&nbsp;| |- <a class="idref" href="L.L.html#app"><span class="id" title="constructor">app</span></a> (@<a class="idref" href="L.Tactics.ComputableTime.html#extT"><span class="id" title="method">extT</span></a> <span class="id" title="var">_</span> (<span class="id" title="var">_</span> <a class="idref" href="L.Tactics.Computable.html#f3c8ae9482c969ad716aa1d8aebf6f70"><span class="id" title="notation">~&gt;</span></a> <span class="id" title="var">_</span> ) <span class="id" title="var">_</span> <span class="id" title="var">_</span> ?<span class="id" title="var">ints</span>) (@<a class="idref" href="L.Tactics.Computable.html#enc"><span class="id" title="method">enc</span></a> <span class="id" title="var">_</span> ?<span class="id" title="var">reg</span> ?<span class="id" title="var">x</span>) <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">&gt;(&lt;=</span></a> ?<span class="id" title="var">k</span> <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">)</span></a> ?<span class="id" title="var">v</span> =&gt;<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="id" title="tactic">change</span> (<a class="idref" href="L.L.html#app"><span class="id" title="constructor">app</span></a> (@<a class="idref" href="L.Tactics.ComputableTime.html#extT"><span class="id" title="method">extT</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">ints</span>) (@<a class="idref" href="L.Tactics.ComputableTime.html#extT"><span class="id" title="method">extT</span></a> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> <span class="id" title="var">_</span> (<a class="idref" href="L.Tactics.ComputableTime.html#reg_is_extT"><span class="id" title="instance">reg_is_extT</span></a> <span class="id" title="var">reg</span> <span class="id" title="var">x</span>)) <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">&gt;(&lt;=</span></a> <span class="id" title="var">k</span><a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">)</span></a> <span class="id" title="var">v</span>);<span class="id" title="var">LrewriteTime_solveGoals</span><br/>
 <br/>
-&nbsp;&nbsp;<span class="comment">(*|&nbsp;xInts&nbsp;:&nbsp;computes&nbsp;?ty&nbsp;?x&nbsp;?xInt&nbsp;_<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;|-&nbsp;?R&nbsp;?xInt&nbsp;?res&nbsp;=&gt;&nbsp;change&nbsp;(R&nbsp;(@ext&nbsp;_&nbsp;_&nbsp;x&nbsp;(Build_computable&nbsp;xInts))&nbsp;res)<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;reflexivity*)</span><br/>
-&nbsp;&nbsp;<span class="comment">(*&nbsp;Correctness&nbsp;Lemmatas:&nbsp;*)</span><br/>
+<br/>
 <br/>
 <span class="comment">(*&nbsp;do&nbsp;nothing&nbsp;to&nbsp;debug:&nbsp;use&nbsp;idtac&nbsp;here!*)</span><br/>
-&nbsp;&nbsp;| |- <span class="id" title="var">_</span> <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">&gt;(&lt;=</span></a> <span class="id" title="var">_</span> <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">)</span></a> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Lreflexivity</span> <span class="comment">(*&nbsp;TO&nbsp;DEBUG:&nbsp;use&nbsp;idtac&nbsp;here*)</span><br/>
+&nbsp;&nbsp;| |- <span class="id" title="var">_</span> <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">&gt;(&lt;=</span></a> <span class="id" title="var">_</span> <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">)</span></a> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">Lreflexivity</span> <br/>
 &nbsp;&nbsp;| |- <span class="id" title="var">_</span> <a class="idref" href="L.L.html#e16b5948c924c8117315a3bcb9b5af70"><span class="id" title="notation">&gt;*</span></a> <span class="id" title="var">_</span> =&gt; <span class="id" title="tactic">reflexivity</span> <span class="comment">(*&nbsp;TO&nbsp;DEBUG:&nbsp;use&nbsp;idtac&nbsp;here*)</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
@@ -222,29 +194,6 @@ Hint&nbsp;Extern&nbsp;0&nbsp;(@intT&nbsp;_&nbsp;_&nbsp;?f&nbsp;_&nbsp;&gt;*&nbsp
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
 
 <br/>
-<span class="comment">(*&nbsp;Legacy:&nbsp;*)</span><br/>
-<span class="comment">(*<br/>
-Ltac&nbsp;Lrewrite_old''&nbsp;:=(eassumption;try&nbsp;reflexivity;try&nbsp;Lproc)&nbsp;||&nbsp;(try&nbsp;trivial&nbsp;with&nbsp;Lrewrite&nbsp;nocore;<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;match&nbsp;goal&nbsp;with<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*|&nbsp;|-&nbsp;@ext&nbsp;_&nbsp;(TyB&nbsp;_)&nbsp;_&nbsp;_&nbsp;&gt;*&nbsp;_&nbsp;=&gt;&nbsp;rewrite&nbsp;int_is_enc;reflexivity<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;|-&nbsp;app&nbsp;(int&nbsp;_)&nbsp;(enc&nbsp;_)&nbsp;&gt;*&nbsp;_&nbsp;=&gt;&nbsp;apply&nbsp;intAppEnc*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;|-&nbsp;app&nbsp;(@ext&nbsp;_&nbsp;(_&nbsp;~&gt;&nbsp;_)&nbsp;_&nbsp;_)&nbsp;(int&nbsp;_)&nbsp;&gt;*&nbsp;_&nbsp;=&gt;&nbsp;apply&nbsp;intApp<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;for&nbsp;correctness-lemma&nbsp;premisses:*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;|-&nbsp;_&nbsp;==&nbsp;_&nbsp;=&gt;&nbsp;apply&nbsp;star_equiv<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;H:_|-&nbsp;_&nbsp;&gt;*&nbsp;_&nbsp;=&gt;&nbsp;eapply&nbsp;H;try&nbsp;reflexivity;try&nbsp;Lproc<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;|-&nbsp;app&nbsp;?s&nbsp;?t&nbsp;&gt;*&nbsp;_&nbsp;=&gt;&nbsp;apply&nbsp;star_step_app_proper<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;|-&nbsp;_&nbsp;&gt;*&nbsp;_&nbsp;=&gt;&nbsp;reflexivity<br/>
-&nbsp;&nbsp;end).<br/>
-<br/>
-Ltac&nbsp;Lrewrite_old'&nbsp;:=<br/>
-&nbsp;&nbsp;match&nbsp;goal&nbsp;with&nbsp;<span class="comment">(*<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;|-&nbsp;?s&nbsp;==&nbsp;_&nbsp;=&gt;&nbsp;is_evar&nbsp;s;fail&nbsp;1<br/>
-&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;|-&nbsp;?s&nbsp;&gt;*&nbsp;_&nbsp;=&gt;&nbsp;is_evar&nbsp;s;fail&nbsp;1*)</span><br/>
-&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;_&nbsp;=&gt;&nbsp;repeat&nbsp;progress&nbsp;(etransitivity;<span class="inlinecode"><span class="id" title="tactic">repeat</span></span> <span class="inlinecode"><span class="id" title="var">Lrewrite_old''</span>|</span>)<br/>
-&nbsp;&nbsp;end.<br/>
-<br/>
-Ltac&nbsp;Lrewrite_old&nbsp;:=&nbsp;repeat&nbsp;autounfold&nbsp;with&nbsp;test&nbsp;in&nbsp;*;(Lrewrite_old');try&nbsp;(symmetry;(Lrewrite_old');symmetry).<br/>
-*)</span><br/>
 <span class="id" title="keyword">Ltac</span> <span class="id" title="var">Lrewrite</span> :=<br/>
 &nbsp;&nbsp;<span class="id" title="keyword">lazymatch</span> <span class="id" title="keyword">goal</span> <span class="id" title="keyword">with</span><br/>
 &nbsp;&nbsp;| |- <span class="id" title="var">_</span> <a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">&gt;(&lt;=</span></a> <span class="id" title="var">_</span><a class="idref" href="L.L.html#81d0d04adc21b0e21dc34326aab15bd5"><span class="id" title="notation">)</span></a> <span class="id" title="var">_</span> =&gt; <span class="id" title="var">LrewriteTime</span><br/>

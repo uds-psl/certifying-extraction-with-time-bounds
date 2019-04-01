@@ -53,7 +53,6 @@
 
 <br/>
 <span class="id" title="keyword">Notation</span> <a name="6d227b35fcc3fe7899272727b8c73bfc"><span class="id" title="notation">&quot;</span></a>'#' v" := (<a class="idref" href="L.L.html#var"><span class="id" title="constructor">var</span></a> <span class="id" title="var">v</span>) (<span class="id" title="tactic">at</span> <span class="id" title="keyword">level</span> 1).<br/>
-<span class="comment">(*&nbsp;Notation&nbsp;"(λ&nbsp;&nbsp;s&nbsp;)"&nbsp;:=&nbsp;(lam&nbsp;s)&nbsp;(right&nbsp;associativity,&nbsp;at&nbsp;level&nbsp;0).&nbsp;&nbsp;*)</span><br/>
 
 <br/>
 <span class="id" title="keyword">Instance</span> <a name="term_eq_dec"><span class="id" title="instance">term_eq_dec</span></a> : <span class="id" title="notation">eq_dec</span> <a class="idref" href="L.L.html#term"><span class="id" title="inductive">term</span></a>.<br/>
@@ -86,14 +85,6 @@ Notation using binders
 &nbsp;&nbsp;| <a class="idref" href="L.L.html#hl"><span class="id" title="constructor">hl</span></a> <span class="id" title="var">f</span> =&gt; <a class="idref" href="L.L.html#lam"><span class="id" title="constructor">lam</span></a> (<a class="idref" href="L.L.html#TH"><span class="id" title="definition">TH</span></a> (<a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Datatypes.html#S"><span class="id" title="constructor">S</span></a> <a class="idref" href="L.L.html#n"><span class="id" title="variable">n</span></a>) (<span class="id" title="var">f</span> <a class="idref" href="L.L.html#n"><span class="id" title="variable">n</span></a>))<br/>
 &nbsp;&nbsp;| <a class="idref" href="L.L.html#hter"><span class="id" title="constructor">hter</span></a> <span class="id" title="var">t</span> =&gt; <span class="id" title="var">t</span><br/>
 &nbsp;&nbsp;<span class="id" title="keyword">end</span>.<br/>
-
-<br/>
-<span class="comment">(*&nbsp;Fixpoint&nbsp;H&nbsp;L&nbsp;s&nbsp;:=&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;match&nbsp;s&nbsp;with&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;|&nbsp;var&nbsp;n&nbsp;=&gt;&nbsp;hv&nbsp;(nth&nbsp;n&nbsp;L&nbsp;0)&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;|&nbsp;app&nbsp;s&nbsp;t&nbsp;=&gt;&nbsp;ha&nbsp;(H&nbsp;L&nbsp;s)&nbsp;(H&nbsp;L&nbsp;t)&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;|&nbsp;lam&nbsp;s&nbsp;=&gt;&nbsp;hl&nbsp;(fun&nbsp;x&nbsp;=&gt;&nbsp;H&nbsp;(x&nbsp;::&nbsp;L)&nbsp;s)&nbsp;*)</span><br/>
-<span class="comment">(*&nbsp;&nbsp;&nbsp;end.&nbsp;*)</span><br/>
 
 <br/>
 <span class="id" title="keyword">Definition</span> <a name="convert"><span class="id" title="definition">convert</span></a>:=<a class="idref" href="L.L.html#TH"><span class="id" title="definition">TH</span></a> 0.<br/>
@@ -615,13 +606,6 @@ Properties of the equivalence relation
 <span class="id" title="keyword">Qed</span>.<br/>
 
 <br/>
-<span class="comment">(*<br/>
-Lemma&nbsp;equiv_lambda'&nbsp;s&nbsp;t&nbsp;:&nbsp;s&nbsp;==&nbsp;(lam&nbsp;t)&nbsp;-&gt;&nbsp;s&nbsp;&gt;*&nbsp;(lam&nbsp;t).<br/>
-Proof.<br/>
-&nbsp;&nbsp;intros&nbsp;H.&nbsp;destruct&nbsp;(church_rosser&nbsp;H)&nbsp;as&nbsp;<span class="inlinecode"><span class="id" title="var">u</span></span> <span class="inlinecode">[<span class="id" title="var">A</span></span> <span class="inlinecode"><span class="id" title="var">B</span>]</span>;&nbsp;repeat&nbsp;inv_step;&nbsp;eassumption.<br/>
-Qed.*)</span><br/>
-
-<br/>
 <span class="id" title="keyword">Lemma</span> <a name="equiv_lambda"><span class="id" title="lemma">equiv_lambda</span></a> <span class="id" title="var">s</span> <span class="id" title="var">t</span> : <a class="idref" href="L.L.html#lambda"><span class="id" title="definition">lambda</span></a> <a class="idref" href="L.L.html#t"><span class="id" title="variable">t</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="L.L.html#s"><span class="id" title="variable">s</span></a> <a class="idref" href="L.L.html#bec439b36d449155cf4821d64d620d15"><span class="id" title="notation">==</span></a> <a class="idref" href="L.L.html#t"><span class="id" title="variable">t</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="L.L.html#s"><span class="id" title="variable">s</span></a> <a class="idref" href="L.L.html#e16b5948c924c8117315a3bcb9b5af70"><span class="id" title="notation">&gt;*</span></a> <a class="idref" href="L.L.html#t"><span class="id" title="variable">t</span></a>.<br/>
 <span class="id" title="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">intros</span> <span class="id" title="var">H</span> <span class="id" title="var">eq</span>. <span class="id" title="tactic">destruct</span> (<a class="idref" href="L.L.html#church_rosser"><span class="id" title="lemma">church_rosser</span></a> <span class="id" title="var">eq</span>) <span class="id" title="keyword">as</span> [<span class="id" title="var">u</span> [<span class="id" title="var">A</span> <span class="id" title="var">B</span>]]. <span class="id" title="var">inv</span> <span class="id" title="var">B</span>. <span class="id" title="tactic">assumption</span>. <span class="id" title="var">inv</span> <span class="id" title="var">H</span>. <span class="id" title="var">inv</span> <span class="id" title="var">H0</span>.<br/>
@@ -675,18 +659,6 @@ Definition of convergence
 <span class="id" title="keyword">Proof</span>.<br/>
 &nbsp;&nbsp;<span class="id" title="tactic">intros</span> <span class="id" title="var">s</span> <span class="id" title="var">t</span> <span class="id" title="var">H</span>. <span class="id" title="var">now</span> <span class="id" title="tactic">eapply</span> <a class="idref" href="L.L.html#converges_equiv"><span class="id" title="lemma">converges_equiv</span></a>.<br/>
 <span class="id" title="keyword">Qed</span>.<br/>
-<span class="comment">(*<br/>
-Lemma&nbsp;eq_lam&nbsp;s&nbsp;t&nbsp;:&nbsp;lambda&nbsp;s&nbsp;-&gt;&nbsp;lambda&nbsp;t&nbsp;-&gt;&nbsp;lam&nbsp;s&nbsp;==&nbsp;lam&nbsp;t&nbsp;&lt;-&gt;&nbsp;s&nbsp;=&nbsp;t.<br/>
-Proof.<br/>
-&nbsp;&nbsp;split.<br/>
-&nbsp;&nbsp;-&nbsp;intros&nbsp;H.&nbsp;eapply&nbsp;equiv_lambda&nbsp;in&nbsp;H;&nbsp;repeat&nbsp;inv_step;&nbsp;reflexivity.<br/>
-&nbsp;&nbsp;-&nbsp;intros&nbsp;<span class="inlinecode"></span>.&nbsp;reflexivity.<br/>
-Qed.&nbsp;&nbsp;<br/>
-<br/>
-Lemma&nbsp;unique_normal_forms'&nbsp;(s&nbsp;t&nbsp;t'&nbsp;:&nbsp;term)&nbsp;:&nbsp;s&nbsp;==&nbsp;lam&nbsp;t&nbsp;-&gt;&nbsp;s&nbsp;==&nbsp;lam&nbsp;t'&nbsp;-&gt;&nbsp;lam&nbsp;t&nbsp;=&nbsp;lam&nbsp;t'.<br/>
-Proof.<br/>
-&nbsp;&nbsp;intros&nbsp;Ht&nbsp;Ht'.&nbsp;rewrite&nbsp;Ht&nbsp;in&nbsp;Ht'.&nbsp;eapply&nbsp;eq_lam&nbsp;in&nbsp;Ht'.&nbsp;congruence.<br/>
-Qed.*)</span><br/>
 
 <br/>
 <span class="id" title="keyword">Lemma</span> <a name="unique_normal_forms"><span class="id" title="lemma">unique_normal_forms</span></a> (<span class="id" title="var">s</span> <span class="id" title="var">t</span> : <a class="idref" href="L.L.html#term"><span class="id" title="inductive">term</span></a>) : <a class="idref" href="L.L.html#lambda"><span class="id" title="definition">lambda</span></a> <a class="idref" href="L.L.html#s"><span class="id" title="variable">s</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="L.L.html#lambda"><span class="id" title="definition">lambda</span></a> <a class="idref" href="L.L.html#t"><span class="id" title="variable">t</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">-&gt;</span></a>  <a class="idref" href="L.L.html#s"><span class="id" title="variable">s</span></a> <a class="idref" href="L.L.html#bec439b36d449155cf4821d64d620d15"><span class="id" title="notation">==</span></a> <a class="idref" href="L.L.html#t"><span class="id" title="variable">t</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#d43e996736952df71ebeeae74d10a287"><span class="id" title="notation">-&gt;</span></a> <a class="idref" href="L.L.html#s"><span class="id" title="variable">s</span></a> <a class="idref" href="http://coq.inria.fr/distrib/V8.8.2/stdlib//Coq.Init.Logic.html#1c39bf18749e5cc609e83c0a0ba5a372"><span class="id" title="notation">=</span></a> <a class="idref" href="L.L.html#t"><span class="id" title="variable">t</span></a>.<br/>

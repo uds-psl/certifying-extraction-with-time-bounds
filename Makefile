@@ -1,10 +1,10 @@
 all: Makefile.coq
 	@echo "# Building base-library"
-	@make -s -C base-library
+	+@make -s -C base-library
 	@echo "# Building template-coq"
-	@make -s -C template-coq/template-coq
+	+@make -s -C template-coq/template-coq
 	@echo "# Building coq-library-undecidability"
-	@make -s -C coq-library-undecidability
+	+@make -s -C coq-library-undecidability
 	@echo "# Building this project"
 	+make -f Makefile.coq all
 

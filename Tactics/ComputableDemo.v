@@ -28,6 +28,7 @@ Proof.
 Qed.
 
 (** *** Interactive Demo *)
+(** This file shows the inner working of the tactic that shows the correctness of our extracted terms, [[cstep]] *)
 
 Section PaperExample.
 
@@ -47,7 +48,7 @@ Section PaperExample.
 
   Print cnst.
 
-  (** Comming up with the conditions for the time bound *)
+  (** Coming up with the conditions for the time bound *)
   Goal forall fT, computableTime orb fT.
     intros.
     extractAs s.
@@ -138,7 +139,7 @@ Section PaperExample.
     all:cstep.
   Qed.
 
-  (*comming up with the condition *)
+  (*coming up with the condition *)
 
    Lemma termT_map A B (Rx : registered A)  (Ry: registered B):
     computableTime (@map A B) (fun f fT => (cnst "c",fun xs _ => (cnst ("f",xs),tt))).
@@ -149,7 +150,7 @@ Section PaperExample.
     repeat cstep.
   Abort.
   
-  (* comming up with the time bound *)
+  (* coming up with the time bound *)
 
   Lemma termT_map A B (Rx : registered A)  (Ry: registered B):
     computableTime (@map A B) (fun f fT => (cnst "c",fun xs _ => (cnst ("f",xs),tt))).
@@ -166,21 +167,6 @@ Section PaperExample.
 
   End PaperExample. 
 
-
-  (*
-(* this is more or lest just a test for internalization automation... *)
-Instance term_option_map X Y (Hy:registered Y) (Hx : registered X):computable (@option_map X Y).
-Proof.
-  compute' 0.  
-  computePrettyStep.
-  
-  Unshelve. Focus 4. unfold int. cbn. Lsimpl. unfold intApp'. Set Printing Implicit. split. unfold int. cbn.  hnf. reflexivity. cbn. Lsimpl.
-  computePrettyStep.
-  computePrettyStep.
-  Unshelve. Focus 4. split. reflexivity. Lreflexivity.
-  compute auto. 
-Qed.
-   *)
 
   Instance term_nat_eqb : computable Nat.eqb.
   Proof.
