@@ -62,10 +62,6 @@ Definition tmTryInfer (n : ident) (red : option reductionStrategy) (A : Type) : 
     | Some i => ret i
     | None =>
       A' <- match red with Some red => ret A | None => ret A end;;
-
-         (* term <- tmQuote A';; *)
-         (* tmEval cbv ("Did not find an instance for " ++ string_of_term term ++". You might want to register a instance for this.")  >>= tmFail *)
-         (*Commented out because inside tactics, the error that tmLemmaRed is not allowed will hide the mor informative error massage above. *)
          tmPrint "Did not find an instance for ";;
          (tmPrint A');;
          (tmEval cbv ("open obligation " ++ n ++ " for it. You might want to register a instance before and rerun this.") >>= tmPrint);;
@@ -167,7 +163,7 @@ Fixpoint insert_params fuel Params i t :=
   let params := List.length Params in
   match fuel with 0 => tmFail "out of fuel in insert_params" | S fuel =>
   match t with
-  | tRel n => (match nth_error Params (params + i - n - 1) with Some x => ret x | _ => ret (tRel n) (* tmFail "HERE" *) end)
+  | tRel n => (match nth_error Params (params + i - n - 1) with Some x => ret x | _ => ret (tRel n) end)
   | tApp s R => s <- insert_params fuel Params i s ;;
                  R <- monad_map (insert_params fuel Params i) R;; 
                  ret (tApp s R)
@@ -232,6 +228,7 @@ Definition tmEncode (name : ident) (A : Type) :=
   tmEval hnf u.
 
 (** **** Examples *)
+(* Commented out for less printing while compiling *)
 
 (* Run TemplateProgram (tmEncode "unit_encode" unit >>= tmPrint). *)
 (* Print unit_encode. *)
@@ -292,6 +289,7 @@ Definition tmExtractConstr (def : ident) {A : Type} (a : A) :=
   tmExtractConstr' (Some def) a.
 
 (** **** Examples *)
+(* Commented out for less printing while compiling *)
 
 (* Section Fix_X. *)
 
@@ -313,17 +311,8 @@ Definition tmExtractConstr (def : ident) {A : Type} (a : A) :=
 
 Notation "↑ env" := (fun n => match n with 0 => 0 | S n => S (env n) end) (at level 10).
 
-(* TODO? We could support more term is we look at the type of a constant top determine which arguments are 'parameters' (e.g. on which arguments the type depends), (and maybe also rearrange them to the front for e.g. Vector.map (whoch becomes 'fun A B n f => @Vector.map A B f n')*) (*
-Import Sorted.
-Require Import Mergesort.
-
-Module Import NatSort := Sort NatOrder.
-
-Example SimpleMergeExample := Eval compute in sort [5;3;6;1;8;6;0].*)
-
 Local Definition error {A} (a:A) := 1000.
 Opaque error.
-
 
 (*Get the free variables*)
 Fixpoint freeVars (s:Ast.term) : list nat :=
@@ -341,7 +330,6 @@ Fixpoint freeVars (s:Ast.term) : list nat :=
   end.
 
 (*Get a term representing a type of form 'forall x1 ...xn, T' and returns the number of paramaters*)
-(* TODO: we could speed up this from ~n^2 to ~n by memorising the free vars and merging manually in tProd*)
 Fixpoint dependentArgs (s:Ast.term) : nat :=
   match s with
     tProd _ ty bd=>
@@ -393,7 +381,7 @@ Fixpoint extract (env : nat -> nat) (s : Ast.term) (fuel : nat) : TemplateMonad 
     a <- tmUnquote s ;;
     a' <- tmEval cbn (my_projT2 a);;
     n <- (tmEval cbv (String.append (name_of s) "_term") >>= tmFreshName) ;;
-    i <- tmTryInfer n (Some cbn) (extracted a') ;; (* TODO: Is hnf okay? *)
+    i <- tmTryInfer n (Some cbn) (extracted a') ;; 
       ret (@int_ext _ _ i)
 
   | Ast.tConstruct (mkInd n _) _ _ =>
@@ -414,7 +402,7 @@ Fixpoint extract (env : nat -> nat) (s : Ast.term) (fuel : nat) : TemplateMonad 
   | tVar _ =>     a <- tmUnquote s ;;
     a' <- tmEval cbn (my_projT2 a);;
     n <- (tmEval cbv (String.append (name_of s) "_term") >>= tmFreshName) ;;
-    i <- tmTryInfer n (Some cbn) (extracted a') ;; (* TODO: Is hnf okay? *)
+    i <- tmTryInfer n (Some cbn) (extracted a') ;; 
       ret (@int_ext _ _ i)
   | tMeta _ =>     tmFail "tMeta is not supported"
   | tEvar _ _ =>   tmFail "tEvar is not supported"
@@ -453,6 +441,7 @@ Definition tmExtract (nm : option string) {A} (a : A) : TemplateMonad L.term :=
 Opaque extracted.
 
 (** **** Examples *)
+(* Commented out for less printing while compiling *)
 
 (* Fixpoint ackermann n : nat -> nat := *)
 (*   match n with *)
@@ -476,11 +465,6 @@ Opaque extracted.
 
 (* Run TemplateProgram (tmExtract (Some "mult_term") mult). *)
 
-
-(* Inductive vec (X : Type) : nat -> Type := *)
-(* | vecNil : vec X 0 *)
-(* | vecCons n (x : X) (v : vec X n) : vec X (S n). *)
-
 (* Section extract. *)
 
 (*   Context { A B : Set }. *)
@@ -493,19 +477,6 @@ Opaque extracted.
 (*   Run TemplateProgram (tmExtract (Some "filter_term") (@filter A) >>= tmPrint). *)
 (*   Print filter_term. *)
   
-
-(*   Definition map_vec (A B : Type) (f : A -> B) := *)
-(*     fix map_vec n (v : vec A n) : vec B n := *)
-(*       match v with *)
-(*       | vecNil _ => @vecNil B *)
-(*       | @vecCons _ n0 a v => @vecCons B n0 (f a) (@map_vec n0 v) *)
-(*       end. *)
-
-(*   Run TemplateProgram (tmExtractConstr "vecNil_term" (@vecNil B)). *)
-
-(*   Run TemplateProgram (tmExtractConstr "vecCons_term" (@vecCons B) >>= tmPrint). *)
-  
-(*   Run TemplateProgram (tmExtract (Some "map_vec_term") (@map_vec A B) >>= tmPrint). *)
 (* End extract. *)
 
 Global Obligation Tactic := idtac.
