@@ -37,5 +37,16 @@ Proof. extract. solverec. Qed.
 
 (** ** Extracted step-indexed L-interpreter *)
 
+
+Instance term_eva : computableTime eva (fun n _ => (5,fun s _ => ( cnst ("f",n,s),tt))).
+Proof. extract. solverec.
+(** Here we see the set of equations one would need to solve, with the most prominent one beeing presented after some transformations:*)
+       7:{
+       subst t;
+       rename t1 into s1; rename t2 into s2;
+       rename t0 into t1; rename t3 into t2;fold eva in *.
+       
+Abort.
+
 Instance term_eva : computable eva.
 Proof. extract. Qed.
