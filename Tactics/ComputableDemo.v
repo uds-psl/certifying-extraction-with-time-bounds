@@ -57,7 +57,6 @@ Section PaperExample.
   all:cstep.
   Qed.
 
-  Print cnst.
 
   (** Coming up with the conditions for the time bound *)
   Goal forall fT, computableTime orb fT.
@@ -73,6 +72,9 @@ Section PaperExample.
   Abort.  
 
   (** Finding the Time Bound *)
+
+  (** We use an polymorphic, opaque wrapper for [0] as an "marker": *)
+  Print cnst.
   
   Goal computableTime orb (fun _ _ => (cnst "c1",fun _ _ => (cnst "c2",tt))).
     extract. solverec. (* Now the solution is clear *)
@@ -141,18 +143,43 @@ Section PaperExample.
   Import Datatypes.Lists.
   Remove Hints term_map : typeclass_instances. 
 
-  Lemma map_term A B  (Rx : registered A)  (Ry: registered B):
+  Example correct_recursive A B  (Rx : registered A)  (Ry: registered B):
     computable (@map A B).
     extractAs s.
     computable_using_noProof s.
+    cstep;rename x into f.
+    (** [computes (! list A ~> ! list B) (fix map (l : list A) : list B := match l with
+                                                                    | [] => []
+                                                                    | a :: t => f a :: map t
+                                                                    end)
+            (rho (lam (lam ((O (ext [])) (lam (lam (((ext cons) ((ext f) 1)) (3 0))))))))] *)
+
+    (** Here the magic happens: *)
     cstep.
-    cstep.
+    (** New assumption (fix, so only to be called on smaller arguments):
+   [IHP : forall x0 : list A,
+        True ->
+        True ->
+        {v : term &
+        computesExp (! list B) ((fix map (l : list A) : list B := match l with
+                                                                  | [] => []
+                                                                  | a :: t => f a :: map t
+                                                                  end) x0) (P (enc x0)) v} ] *)
+    (** Subgoal 1: [computes (! list B) [] (enc [])] *) 
+    (** Subgoal 2: [computes (! list B) (x a :: (fix map (l0 : list A) : list B := match l0 with
+                                                                | [] => []
+                                                                | a0 :: t => x a0 :: map t
+                                                                end) l)
+   (enc (x a :: (fix map (l0 : list A) : list B := match l0 with
+                                                   | [] => []
+                                                   | a0 :: t => x a0 :: map t
+                                                   end) l))] *)
     all:cstep.
   Qed.
 
-  (*coming up with the condition *)
+  (* coming up with the condition, with intemrediate steps *)
 
-   Lemma termT_map A B (Rx : registered A)  (Ry: registered B):
+  Example comeUp_timebound_withInternalTactics A B (Rx : registered A)  (Ry: registered B):
     computableTime (@map A B) (fun f fT => (cnst "c",fun xs _ => (cnst ("f",xs),tt))).
     extractAs s.
     computable_using_noProof s.
@@ -161,11 +188,14 @@ Section PaperExample.
     repeat cstep.
   Abort.
   
-  (* coming up with the time bound *)
+  (** coming up with the time bound *)
 
-  Lemma termT_map A B (Rx : registered A)  (Ry: registered B):
+  Lemma comeUp_timebound A B (Rx : registered A)  (Ry: registered B):
     computableTime (@map A B) (fun f fT => (cnst "c",fun xs _ => (cnst ("f",xs),tt))).
     extract. solverec.
+    (** Subgoal 1: [1 <= cnst "c"] *)
+    (** Subgoal 2: [7 <= cnst ("f", [])] *)
+    (** Subgoal 3: [fst (xT a tt) + cnst ("f", l) + 11 <= cnst ("f", a :: l) ] *)
   Abort.
 
   Lemma term_map (X Y:Type) (Hx : registered X) (Hy:registered Y):

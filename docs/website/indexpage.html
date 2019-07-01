@@ -216,7 +216,7 @@
 <td>Z</td>
 <td>_</td>
 <td>other</td>
-<td>(306 entries)</td>
+<td>(304 entries)</td>
 </tr>
 <tr>
 <td>Constructor Index</td>
@@ -440,7 +440,7 @@
 <td>Z</td>
 <td>_</td>
 <td>other</td>
-<td>(224 entries)</td>
+<td>(226 entries)</td>
 </tr>
 <tr>
 <td>Record Index</td>
@@ -522,6 +522,8 @@
 <a href="L.L.html#closed_k_bound">closed_k_bound</a> [lemma, in <a href="L.L.html">L.L</a>]<br/>
 <a href="L.Tactics.ComputableTime.html#cnst">cnst</a> [definition, in <a href="L.Tactics.ComputableTime.html">L.Tactics.ComputableTime</a>]<br/>
 <a href="L.L.html#comb_proc_red">comb_proc_red</a> [lemma, in <a href="L.L.html">L.L</a>]<br/>
+<a href="L.Tactics.ComputableDemo.html#comeUp_timebound">comeUp_timebound</a> [lemma, in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
+<a href="L.Tactics.ComputableDemo.html#comeUp_timebound_withInternalTactics">comeUp_timebound_withInternalTactics</a> [definition, in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
 <a href="L.Tactics.LClos.html#Comp">Comp</a> [inductive, in <a href="L.Tactics.LClos.html">L.Tactics.LClos</a>]<br/>
 <a href="L.Tactics.LClos.html#CompApp">CompApp</a> [constructor, in <a href="L.Tactics.LClos.html">L.Tactics.LClos</a>]<br/>
 <a href="L.Tactics.LClos_Eval.html#CompAppCount">CompAppCount</a> [definition, in <a href="L.Tactics.LClos_Eval.html">L.Tactics.LClos_Eval</a>]<br/>
@@ -600,6 +602,7 @@
 <a href="L.L.html#converges_equiv">converges_equiv</a> [lemma, in <a href="L.L.html">L.L</a>]<br/>
 <a href="L.L.html#convert">convert</a> [definition, in <a href="L.L.html">L.L</a>]<br/>
 <a href="L.Tactics.ComputableDemo.html#correctness_example">correctness_example</a> [definition, in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
+<a href="L.Tactics.ComputableDemo.html#correct_recursive">correct_recursive</a> [definition, in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
 <a href="L.Tactics.LClos.html#CPow">CPow</a> [inductive, in <a href="L.Tactics.LClos.html">L.Tactics.LClos</a>]<br/>
 <a href="L.Tactics.LClos.html#CPowApp">CPowApp</a> [constructor, in <a href="L.Tactics.LClos.html">L.Tactics.LClos</a>]<br/>
 <a href="L.Tactics.LClos.html#CPowAppL">CPowAppL</a> [constructor, in <a href="L.Tactics.LClos.html">L.Tactics.LClos</a>]<br/>
@@ -954,7 +957,6 @@
 <a href="L.TM.Prelim.html#map_inl">map_inl</a> [definition, in <a href="L.TM.Prelim.html">L.TM.Prelim</a>]<br/>
 <a href="L.TM.Prelim.html#map_opt">map_opt</a> [definition, in <a href="L.TM.Prelim.html">L.TM.Prelim</a>]<br/>
 <a href="L.Tactics.Reflection.html#map_ext'">map_ext'</a> [lemma, in <a href="L.Tactics.Reflection.html">L.Tactics.Reflection</a>]<br/>
-<a href="L.Tactics.ComputableDemo.html#map_term">map_term</a> [lemma, in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
 <a href="L.TM.Prelim.html#Map.X">Map.X</a> [variable, in <a href="L.TM.Prelim.html">L.TM.Prelim</a>]<br/>
 <a href="L.TM.Prelim.html#Map.Y">Map.Y</a> [variable, in <a href="L.TM.Prelim.html">L.TM.Prelim</a>]<br/>
 <a href="L.TM.Prelim.html#Map.Z">Map.Z</a> [variable, in <a href="L.TM.Prelim.html">L.TM.Prelim</a>]<br/>
@@ -1315,8 +1317,6 @@
 <a href="L.Functions.Universal.html#termT_S">termT_S</a> [instance, in <a href="L.Functions.Universal.html">L.Functions.Universal</a>]<br/>
 <a href="L.Datatypes.Lists.html#termT_append">termT_append</a> [instance, in <a href="L.Datatypes.Lists.html">L.Datatypes.Lists</a>]<br/>
 <a href="L.Datatypes.Lists.html#termT_cons">termT_cons</a> [instance, in <a href="L.Datatypes.Lists.html">L.Datatypes.Lists</a>]<br/>
-<a href="L.Tactics.ComputableDemo.html#termT_map">termT_map</a> [lemma, in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
-<a href="L.Tactics.ComputableDemo.html#termT_map">termT_map</a> [lemma, in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
 <a href="L.Functions.Ackermann.html#termT_ackermann">termT_ackermann</a> [lemma, in <a href="L.Functions.Ackermann.html">L.Functions.Ackermann</a>]<br/>
 <a href="L.Functions.Universal.html#term_eva">term_eva</a> [instance, in <a href="L.Functions.Universal.html">L.Functions.Universal</a>]<br/>
 <a href="L.Functions.Universal.html#term_substT">term_substT</a> [instance, in <a href="L.Functions.Universal.html">L.Functions.Universal</a>]<br/>
@@ -1683,6 +1683,7 @@
 <a href="L.L.html#closed_dcl">closed_dcl</a> [in <a href="L.L.html">L.L</a>]<br/>
 <a href="L.L.html#closed_k_bound">closed_k_bound</a> [in <a href="L.L.html">L.L</a>]<br/>
 <a href="L.L.html#comb_proc_red">comb_proc_red</a> [in <a href="L.L.html">L.L</a>]<br/>
+<a href="L.Tactics.ComputableDemo.html#comeUp_timebound">comeUp_timebound</a> [in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
 <a href="L.Tactics.LClos_Eval.html#CompBeta_sound">CompBeta_sound</a> [in <a href="L.Tactics.LClos_Eval.html">L.Tactics.LClos_Eval</a>]<br/>
 <a href="L.Tactics.LClos_Eval.html#CompBeta_validComp">CompBeta_validComp</a> [in <a href="L.Tactics.LClos_Eval.html">L.Tactics.LClos_Eval</a>]<br/>
 <a href="L.Tactics.LClos_Eval.html#CompSeval_sound">CompSeval_sound</a> [in <a href="L.Tactics.LClos_Eval.html">L.Tactics.LClos_Eval</a>]<br/>
@@ -1808,7 +1809,6 @@
 <a href="L.TM.TM.html#mapTape_left">mapTape_left</a> [in <a href="L.TM.TM.html">L.TM.TM</a>]<br/>
 <a href="L.TM.TM.html#mapTape_current">mapTape_current</a> [in <a href="L.TM.TM.html">L.TM.TM</a>]<br/>
 <a href="L.Tactics.Reflection.html#map_ext'">map_ext'</a> [in <a href="L.Tactics.Reflection.html">L.Tactics.Reflection</a>]<br/>
-<a href="L.Tactics.ComputableDemo.html#map_term">map_term</a> [in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
 <a href="L.TM.TM.html#midtape_tape_local_l_cons_right">midtape_tape_local_l_cons_right</a> [in <a href="L.TM.TM.html">L.TM.TM</a>]<br/>
 <a href="L.TM.TM.html#midtape_tape_local_l_cons">midtape_tape_local_l_cons</a> [in <a href="L.TM.TM.html">L.TM.TM</a>]<br/>
 <a href="L.TM.TM.html#midtape_tape_local_cons_left">midtape_tape_local_cons_left</a> [in <a href="L.TM.TM.html">L.TM.TM</a>]<br/>
@@ -1963,8 +1963,6 @@
 <a href="L.TM.TM.html#tape_is_midtape">tape_is_midtape</a> [in <a href="L.TM.TM.html">L.TM.TM</a>]<br/>
 <a href="L.TM.TM.html#tape_midtape_current_left">tape_midtape_current_left</a> [in <a href="L.TM.TM.html">L.TM.TM</a>]<br/>
 <a href="L.TM.TM.html#tape_midtape_current_right">tape_midtape_current_right</a> [in <a href="L.TM.TM.html">L.TM.TM</a>]<br/>
-<a href="L.Tactics.ComputableDemo.html#termT_map">termT_map</a> [in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
-<a href="L.Tactics.ComputableDemo.html#termT_map">termT_map</a> [in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
 <a href="L.Functions.Ackermann.html#termT_ackermann">termT_ackermann</a> [in <a href="L.Functions.Ackermann.html">L.Functions.Ackermann</a>]<br/>
 <a href="L.Tactics.ComputableDemo.html#term_map">term_map</a> [in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
 <a href="L.Functions.Equality.html#term_eqb_spec">term_eqb_spec</a> [in <a href="L.Functions.Equality.html">L.Functions.Equality</a>]<br/>
@@ -2382,6 +2380,7 @@
 <a href="L.Prelim.ARS.html#church_rosser">church_rosser</a> [in <a href="L.Prelim.ARS.html">L.Prelim.ARS</a>]<br/>
 <a href="L.L.html#closed">closed</a> [in <a href="L.L.html">L.L</a>]<br/>
 <a href="L.Tactics.ComputableTime.html#cnst">cnst</a> [in <a href="L.Tactics.ComputableTime.html">L.Tactics.ComputableTime</a>]<br/>
+<a href="L.Tactics.ComputableDemo.html#comeUp_timebound_withInternalTactics">comeUp_timebound_withInternalTactics</a> [in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
 <a href="L.Tactics.LClos_Eval.html#CompAppCount">CompAppCount</a> [in <a href="L.Tactics.LClos_Eval.html">L.Tactics.LClos_Eval</a>]<br/>
 <a href="L.Tactics.LClos_Eval.html#CompBeta">CompBeta</a> [in <a href="L.Tactics.LClos_Eval.html">L.Tactics.LClos_Eval</a>]<br/>
 <a href="L.Tactics.LClos_Eval.html#CompSeval">CompSeval</a> [in <a href="L.Tactics.LClos_Eval.html">L.Tactics.LClos_Eval</a>]<br/>
@@ -2398,6 +2397,7 @@
 <a href="L.L.html#converges">converges</a> [in <a href="L.L.html">L.L</a>]<br/>
 <a href="L.L.html#convert">convert</a> [in <a href="L.L.html">L.L</a>]<br/>
 <a href="L.Tactics.ComputableDemo.html#correctness_example">correctness_example</a> [in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
+<a href="L.Tactics.ComputableDemo.html#correct_recursive">correct_recursive</a> [in <a href="L.Tactics.ComputableDemo.html">L.Tactics.ComputableDemo</a>]<br/>
 <a href="L.TM.TM.html#current">current</a> [in <a href="L.TM.TM.html">L.TM.TM</a>]<br/>
 <a href="L.TM.TM.html#current_chars">current_chars</a> [in <a href="L.TM.TM.html">L.TM.TM</a>]<br/>
 <br/><br/><a name="definition_D"></a><h2>D </h2>
@@ -2814,7 +2814,7 @@
 <td>Z</td>
 <td>_</td>
 <td>other</td>
-<td>(306 entries)</td>
+<td>(304 entries)</td>
 </tr>
 <tr>
 <td>Constructor Index</td>
@@ -3038,7 +3038,7 @@
 <td>Z</td>
 <td>_</td>
 <td>other</td>
-<td>(224 entries)</td>
+<td>(226 entries)</td>
 </tr>
 <tr>
 <td>Record Index</td>
