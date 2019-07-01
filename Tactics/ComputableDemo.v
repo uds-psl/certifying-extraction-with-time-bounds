@@ -39,16 +39,16 @@ Section PaperExample.
 
   Example correctness_example: computable orb.
   extractAs s.
-  (** term is in context: [s := (lam (lam ((1 (int_ext true)) 0)) : extracted orb) : extracted orb] *)
+  (** The term is in context: [s := (lam (lam ((1 (int_ext true)) 0)) : extracted orb) : extracted orb] *)
   
   computable_using_noProof s.
-  (**  [computes (! bool ~> ! bool ~> ! bool) (fun b1 b2 : bool => if b1 then true else b2) (lam (lam ((1 (ext true)) 0)))] *)
+  (** Goal: [computes (! bool ~> ! bool ~> ! bool) (fun b1 b2 : bool => if b1 then true else b2) (lam (lam ((1 (ext true)) 0)))] *)
   
   cstep.
-  (** [  computes (! bool ~> ! bool) (fun b2 : bool => if x then true else b2) (lam (((enc x) (ext true)) 0))] *)
+  (** Goal: [  computes (! bool ~> ! bool) (fun b2 : bool => if x then true else b2) (lam (((enc x) (ext true)) 0))] *)
   
   cstep.
-  (** [  computes (! bool) (if x then true else x0) (if x then enc true else enc x0)] *)
+  (** Goal: [  computes (! bool) (if x then true else x0) (if x then enc true else enc x0)] *)
   
   cstep.
   (** Subgoal 1: [ computes (! bool) true (enc true) ]
@@ -148,7 +148,7 @@ Section PaperExample.
     extractAs s.
     computable_using_noProof s.
     cstep;rename x into f.
-    (** [computes (! list A ~> ! list B) (fix map (l : list A) : list B := match l with
+    (** Goal: [computes (! list A ~> ! list B) (fix map (l : list A) : list B := match l with
                                                                     | [] => []
                                                                     | a :: t => f a :: map t
                                                                     end)
