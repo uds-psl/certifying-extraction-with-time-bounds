@@ -109,6 +109,32 @@
 <div class="code">
 
 <br/>
+<span class="comment">(*<br/>
+Instance&nbsp;term_eva&nbsp;:&nbsp;computableTime&nbsp;eva&nbsp;(fun&nbsp;n&nbsp;_&nbsp;=&gt;&nbsp;(5,fun&nbsp;s&nbsp;_&nbsp;=&gt;&nbsp;(&nbsp;cnst&nbsp;("f",n,s),tt))).<br/>
+Proof.&nbsp;extract.&nbsp;solverec.&nbsp;*)</span><br/>
+</div>
+
+<div class="doc">
+Here we see the set of equations one would need to solve for time-complexity, with the most prominent one beeing presented after some transformations:
+</div>
+<div class="code">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">(*&nbsp;&nbsp;7:{<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subst&nbsp;t;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rename&nbsp;t1&nbsp;into&nbsp;s1;&nbsp;rename&nbsp;t2&nbsp;into&nbsp;s2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rename&nbsp;t0&nbsp;into&nbsp;t1;&nbsp;rename&nbsp;t3&nbsp;into&nbsp;t2;fold&nbsp;eva&nbsp;in&nbsp;*.&nbsp;*)</span><br/>
+</div>
+
+<div class="doc">
+ cnst ("f", n, s1) + cnst ("f", n, s2)
+            + 43 * size t1 * size t1
+            + cnst ("f", n, subst t1 0 t2) + 53
+           &lt;= cnst ("f", 1 + n, s1 s2) 
+</div>
+<div class="code">
+ <span class="comment">(*<br/>
+Abort.&nbsp;*)</span><br/>
+
+<br/>
 <span class="id" title="keyword">Instance</span> <a name="term_eva"><span class="id" title="instance">term_eva</span></a> : <a class="idref" href="L.Tactics.Computable.html#computable"><span class="id" title="class">computable</span></a> <a class="idref" href="L.Computability.Seval.html#eva"><span class="id" title="definition">eva</span></a>.<br/>
 <span class="id" title="keyword">Proof</span>. <span class="id" title="var">extract</span>. <span class="id" title="keyword">Qed</span>.<br/>
 </div>
