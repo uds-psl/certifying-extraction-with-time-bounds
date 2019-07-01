@@ -4,7 +4,7 @@ Require Import ComputableTactics.
 
 Section demo.
 
-(* for examples of usage see LBool/LNat/Lists/Option/Encoding etc*)
+(** for further examples of usage see LBool/LNat/Lists/Option/Encoding etc*)
 
 Definition unit_enc := fun (x:unit) => I.
 
@@ -13,7 +13,7 @@ Proof.
   register unit_enc. 
 Defined.
 
-(* example for higher-order-stuff *)
+(** example for automated higher-order-extraction *)
 
 Definition on0 (f:nat->nat->nat) := f 0 0.
 
@@ -32,18 +32,29 @@ Qed.
 
 Section PaperExample.
 
-  (** Examples of the tactics that proof the correctness lemmata *)
+  (** Examples of the internal working of tactics that proof the correctness lemmata *)
 
   Import ComputableTactics.
   Import ComputableTactics.Intern.
 
-  Goal computable orb.
-    extractAs s.
-    computable_using_noProof s.
-    cstep.
-    cstep.
-    cstep.
-    all:    cstep.
+  Example correctness_example: computable orb.
+  extractAs s.
+  (** term is in context: [s := (lam (lam ((1 (int_ext true)) 0)) : extracted orb) : extracted orb] *)
+  
+  computable_using_noProof s.
+  (**  [computes (! bool ~> ! bool ~> ! bool) (fun b1 b2 : bool => if b1 then true else b2) (lam (lam ((1 (ext true)) 0)))] *)
+  
+  cstep.
+  (** [  computes (! bool ~> ! bool) (fun b2 : bool => if x then true else b2) (lam (((enc x) (ext true)) 0))] *)
+  
+  cstep.
+  (** [  computes (! bool) (if x then true else x0) (if x then enc true else enc x0)] *)
+  
+  cstep.
+  (** Subgoal 1: [ computes (! bool) true (enc true) ]
+      Subgoal 2: [ computes (! bool) x0 (enc x0)] **)
+  
+  all:cstep.
   Qed.
 
   Print cnst.
@@ -64,7 +75,7 @@ Section PaperExample.
   (** Finding the Time Bound *)
   
   Goal computableTime orb (fun _ _ => (cnst "c1",fun _ _ => (cnst "c2",tt))).
-    extract. solverec. (* Now the values are clear *)
+    extract. solverec. (* Now the solution is clear *)
   Abort.
 
   Goal computableTime orb (fun _ _ => (1,fun _ _ => (3,tt))).
