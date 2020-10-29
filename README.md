@@ -1,9 +1,12 @@
-# A certifying extraction with time bounds from Coq to call-by-value λ-calculus
+**This is a static copy:** The framework itself is now part of the [Coq Library of Undecidability Proofs](https://github.com/uds-psl/coq-library-undecidability).
 
+# A certifying extraction with time bounds from Coq to call-by-value λ-calculus
 
 Yannick Forster <forster@ps.uni-saarland.de>, Fabian Kunze <kunze@ps.uni-saarland.de>, 
 
 This repository contains the Coq formalisation of the ITP 2019 paper [A certifying extraction with time bounds from Coq to call-by-value λ-calculus](https://www.ps.uni-saarland.de/Publications/details/ForsterKunze:2019:Certifying-extraction.html).
+
+
 
 ## How to compile the code
 
